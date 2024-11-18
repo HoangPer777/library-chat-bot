@@ -1,91 +1,32 @@
 version: "3.1"
-
 nlu:
-- intent: greet
-  examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+  - intent: greet
+    examples: |
+      - Xin chào
+      - Chào bạn
+      - Hello
+      - Hi
 
-- intent: goodbye
-  examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+  - intent: goodbye
+    examples: |
+      - Tạm biệt
+      - Chào nhé
+      - Hẹn gặp lại
 
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+  - intent: ask_book_availability
+    examples: |
+      - Thư viện có sách [Harry Potter](book_name) không?
+      - Sách [Sherlock Holmes](book_name) có sẵn không?
+      - Tôi muốn tìm sách [Lập trình Python](book_name)
 
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+  - intent: ask_opening_hours
+    examples: |
+      - Thư viện mở cửa lúc mấy giờ?
+      - Giờ hoạt động của thư viện là gì?
+      - Thư viện đóng cửa lúc nào?
 
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+  - intent: ask_borrowing_policy
+    examples: |
+      - Làm sao để mượn sách?
+      - Chính sách mượn sách là gì?
+      - Tôi cần thẻ gì để mượn sách?
