@@ -6,12 +6,16 @@ nlu:
       - Chào bạn
       - Hello
       - Hi
+      - chatbot ơi
+      - alo alo
 
   - intent: goodbye
     examples: |
       - Tạm biệt
       - Chào nhé
       - Hẹn gặp lại
+      - okie tôi hiểu rồi
+      - cút
 
   - intent: ask_book_availability
     examples: |
@@ -24,9 +28,22 @@ nlu:
       - Thư viện mở cửa lúc mấy giờ?
       - Giờ hoạt động của thư viện là gì?
       - Thư viện đóng cửa lúc nào?
+      - Mấy giờ thư viện đóng
+      - Mấy giờ thư viện mở
 
   - intent: ask_borrowing_policy
     examples: |
       - Làm sao để mượn sách?
       - Chính sách mượn sách là gì?
       - Tôi cần thẻ gì để mượn sách?
+      - Mượn sách kiểu gì
+      - Làm thế nào để mượn sách
+
+  - intent: search_book
+    examples: |
+      - Tôi muốn tìm sách [Harry Potter](book_name)
+      - Có sách nào của [J.K. Rowling](author) không?
+      - Tôi muốn tìm sách về [khoa học máy tính](category)
+      - Có sách nào viết bởi [Agatha Christie](author) không?
+      - Tôi cần sách về [lập trình Python](category)
+
