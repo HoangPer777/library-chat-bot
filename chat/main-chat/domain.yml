@@ -5,9 +5,12 @@ intents:
   - ask_book_availability
   - ask_opening_hours
   - ask_borrowing_policy
+  - search_book
 
 entities:
   - book_name
+  - author
+  - category
 
 responses:
   utter_greet:
@@ -26,8 +29,16 @@ responses:
     - text: "Để mượn sách, bạn cần đăng ký thẻ thư viện. Hạn mượn tối đa là 14 ngày."
 
   utter_iamabot:
-    - text: "Tôi là chatbot thư viêện. Tôi có thể giúp gì"
+    - text: "Tôi là chatbot thư viện. Tôi có thể giúp gì"
+
+  utter_ask_search_book:
+    - text: "Bạn muốn tìm sách theo tên, tác giả, hay chủ đề nào?"
+  utter_search_result:
+    - text: "Dưới đây là kết quả tìm kiếm cho yêu cầu của bạn: {result}"
+  utter_no_result:
+    - text: "Xin lỗi, không tìm thấy sách nào phù hợp với yêu cầu của bạn."
 
 actions:
   - action_check_book_availability
   - action_iamabot
+  - action_search_book
