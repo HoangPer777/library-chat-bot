@@ -28,3 +28,9 @@ stories:
     steps:
       - intent: greet
       - action: utter_iamabot
+
+
+  - story: Tìm kiếm sách theo tên, tác giả hoặc chủ đề
+    steps:
+      - intent: search_book
+      - action: action_search_book
