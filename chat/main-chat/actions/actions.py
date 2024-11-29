@@ -3,6 +3,35 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import pandas as pd
 
+
+class ActionCheckBooksBorrowed(Action):
+    def name(self):
+        return "action_check_books_borrowed"
+
+    def run(self, dispatcher, tracker, domain):
+        user_id = tracker.get_slot("user_id")
+
+        if not user_id:
+            dispatcher.utter_message("Vui lòng đăng nhập để kiểm tra thông tin mượn sách.")
+            return []
+
+        df = pd.read_csv("borrowed.csv")
+        borrowed_books = df[df["user_id"] == user_id]
+
+        borrowed_books_count = len(borrowed_books)
+
+        if borrowed_books_count > 0:
+            book_list = ""
+            for index, row in borrowed_books.iterrows():
+                book_list += f"- {row['book_title']}\n"
+
+            dispatcher.utter_message(f"Bạn đã mượn {borrowed_books_count} cuốn sách:\n{book_list}")
+        else:
+            dispatcher.utter_message("Bạn chưa mượn cuốn sách nào.")
+
+        return []
+
+
 class ActionCheckBookAvailability(Action):
     def name(self) -> Text:
         return "action_check_book_availability"
@@ -30,6 +59,8 @@ class ActionIAmABot(Action):
     def run(self, dispatcher, tracker, domain):
         dispatcher.utter_message(text="I am a library chatbot. How can I assist you today?")
         return []
+
+
 
 # class ActionSearchBook(Action):
 #     def name(self) -> Text:
@@ -99,3 +130,5 @@ class ActionSearchBook(Action):
             dispatcher.utter_message(text="Xin lỗi, không tìm thấy sách phù hợp với yêu cầu của bạn.")
 
         return []
+
+

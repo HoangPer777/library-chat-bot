@@ -34,3 +34,8 @@ stories:
     steps:
       - intent: search_book
       - action: action_search_book
+
+  - story: User checks borrowed books
+    steps:
+      - intent: ask_books_borrowed
+      - action: action_check_books_borrowed

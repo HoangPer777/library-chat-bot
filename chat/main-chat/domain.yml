@@ -42,3 +42,9 @@ actions:
   - action_check_book_availability
   - action_iamabot
   - action_search_book
+
+#lưu biến người dùng khi đăng nhập vào
+slots:
+  user_id:
+    type: text
+    influence_conversation: false

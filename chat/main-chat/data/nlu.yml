@@ -47,3 +47,10 @@ nlu:
       - Có sách nào viết bởi [Agatha Christie](author) không?
       - Tôi cần sách về [lập trình Python](category)
 
+  - intent: ask_books_borrowed
+    examples: |
+      - Tôi đã mượn bao nhiêu cuốn sách?
+      - Số sách tôi đã mượn là bao nhiêu?
+      - Cập nhật số sách đã mượn của tôi
+      - Tôi chưa trả nhưng cuốn nào ?
+  
