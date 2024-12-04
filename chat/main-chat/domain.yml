@@ -6,11 +6,13 @@ intents:
   - ask_opening_hours
   - ask_borrowing_policy
   - search_book
+  - ask_return_fee
 
 entities:
   - book_name
   - author
   - category
+  - user_id
 
 responses:
   utter_greet:
@@ -33,18 +35,34 @@ responses:
 
   utter_ask_search_book:
     - text: "Bạn muốn tìm sách theo tên, tác giả, hay chủ đề nào?"
+
   utter_search_result:
     - text: "Dưới đây là kết quả tìm kiếm cho yêu cầu của bạn: {result}"
+
   utter_no_result:
     - text: "Xin lỗi, không tìm thấy sách nào phù hợp với yêu cầu của bạn."
+
+  utter_return_fee:
+    - text: "Số tiền bạn cần trả là {return_fee} VND."
+
+  utter_ask_book_query:
+    - text: "Vui lòng cung cấp tên sách hoặc ID sách mà bạn muốn tham khảo."
 
 actions:
   - action_check_book_availability
   - action_iamabot
   - action_search_book
+  - action_get_book_description
+  - action_check_books_borrowed
+  - action_get_detail_history
+
 
 #lưu biến người dùng khi đăng nhập vào
 slots:
   user_id:
+    type: text
+    influence_conversation: false
+
+  book_query:
     type: text
     influence_conversation: false

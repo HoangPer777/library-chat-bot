@@ -35,7 +35,12 @@ stories:
       - intent: search_book
       - action: action_search_book
 
-  - story: User checks borrowed books
+  - story: Người dùng kiểm tra sách đã mượn
     steps:
       - intent: ask_books_borrowed
       - action: action_check_books_borrowed
+
+  - story: Xem lịch sử chi tiết sách đã mượn
+    steps:
+      - intent: check_history_borrowed
+      - action: action_get_detail_history

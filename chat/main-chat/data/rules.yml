@@ -11,3 +11,8 @@ rules: #Mục đích: Bắt đầu định nghĩa các quy tắc xử lý đối
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Calculate return fee
+  steps:
+  - intent: ask_return_fee
+  - action: action_calculate_return_fee

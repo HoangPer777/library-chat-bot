@@ -52,5 +52,25 @@ nlu:
       - Tôi đã mượn bao nhiêu cuốn sách?
       - Số sách tôi đã mượn là bao nhiêu?
       - Cập nhật số sách đã mượn của tôi
-      - Tôi chưa trả nhưng cuốn nào ?
-  
+      - Lượng sách tôi thuê ?
+      - Tôi đã thuê được bao nhiêu cuốn ? 
+
+  - intent: check_history_borrowed
+    examples: |
+      - Cho tôi xem lịch sử mượn sách ?
+      - Thông tin của những cuốn sách tôi đã mượn ?
+      - Chi tiết những sách tôi đã thuê ?
+      - Lịch sử sách đã thuê ?
+      
+  - intent: ask_return_fee
+    examples: |
+      - Số tiền tôi phải trả khi trả sách
+      - Tiền phạt nếu tôi trả sách muộn
+      - Tôi cần trả bao nhiêu tiền cho sách
+      
+  - intents: ask_book_description
+    examples: |
+          - Cho tôi biết về cuốn sách {book_query}
+          - Mô tả cuốn sách {book_query}
+          - Sách {book_query} nói về gì?
+          - Tôi muốn biết mô tả của cuốn sách {book_query}

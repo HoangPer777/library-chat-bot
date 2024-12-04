@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -8,14 +9,14 @@ class ActionCheckBooksBorrowed(Action):
     def name(self):
         return "action_check_books_borrowed"
 
-    def run(self, dispatcher, tracker, domain):
+    def run(self, dispatcher, tracker):
         user_id = tracker.get_slot("user_id")
 
         if not user_id:
             dispatcher.utter_message("Vui lòng đăng nhập để kiểm tra thông tin mượn sách.")
             return []
 
-        df = pd.read_csv("borrowed.csv")
+        df = pd.read_csv("Borrowed.csv")
         borrowed_books = df[df["user_id"] == user_id]
 
         borrowed_books_count = len(borrowed_books)
@@ -23,7 +24,7 @@ class ActionCheckBooksBorrowed(Action):
         if borrowed_books_count > 0:
             book_list = ""
             for index, row in borrowed_books.iterrows():
-                book_list += f"- {row['book_title']}\n"
+                book_list += f"- {row['title']}\n"
 
             dispatcher.utter_message(f"Bạn đã mượn {borrowed_books_count} cuốn sách:\n{book_list}")
         else:
@@ -31,6 +32,160 @@ class ActionCheckBooksBorrowed(Action):
 
         return []
 
+class ActionGetDetailHistory(Action):
+    def name(self) -> Text:
+        return "action_get_detail_history"
+
+    def run(self, dispatcher, tracker, domain):
+        user_id = tracker.get_slot("user_id")
+
+        if not user_id:
+            dispatcher.utter_message("Vui lòng đăng nhập để kiểm tra thông tin mượn sách.")
+            return []
+
+        try:
+
+            df = pd.read_csv("Borrowed.csv")
+            books_df = pd.read_csv("Books.csv")
+            user_df = pd.read_csv("Users.csv")
+            user_name = user_df.loc[user_df['user_id'] == user_id, 'user_name'].values[0]
+        except Exception as e:
+            dispatcher.utter_message("Không thể tải dữ liệu. Vui lòng kiểm tra các file CSV.")
+            return []
+
+
+        borrowed_books = df[df["user_id"] == int(user_id)]
+
+        if borrowed_books.empty:
+            dispatcher.utter_message(f"Không có thông tin mượn sách cho người dùng ID: {user_id}.")
+            return []
+
+        # Generate the list of borrowed books
+        book_list = ""
+        for index, row in borrowed_books.iterrows():
+            book_id = row['id_book']
+            book_details = books_df[books_df['book_id'] == book_id]
+            if not book_details.empty:
+                title = book_details.iloc[0]['title']
+                start_date = row['start_date']
+                end_date = row['end_date']
+                returned = row['returned']
+                book_list += f"- {title} (Ngày mượn: {start_date}, Hạn trả: {end_date}, Ngày trả: {returned})\n"
+
+        # Send the response
+        if book_list:
+            dispatcher.utter_message(f"Thông tin sách bạn đã mượn:\n{book_list}")
+        else:
+            dispatcher.utter_message("Không tìm thấy thông tin sách bạn đã mượn.")
+
+        return []
+
+
+class ActionCalculateFee(Action):
+    def name(self) -> str:
+        return "action_calculate_fee"
+
+    def run(self, dispatcher, tracker, domain):
+        # Lấy user_id từ slot
+        user_id = tracker.get_slot("user_id")
+
+        # Kiểm tra nếu không có user_id
+        if not user_id:
+            dispatcher.utter_message("Vui lòng đăng nhập để kiểm tra thông tin.")
+            return []
+
+        # Đọc dữ liệu từ các tệp CSV
+        users_df = pd.read_csv("users.csv")
+        books_df = pd.read_csv("books.csv")
+        borrowed_df = pd.read_csv("borrowed.csv")
+
+        # Lấy thông tin người dùng
+        user_data = users_df[users_df['user_id'] == user_id]
+        if user_data.empty:
+            dispatcher.utter_message(f"Bạn chưa đăng nhập để có thể hỏi ")
+            return []
+
+        user_name = user_data['user_name'].values[0]
+
+        # Lấy thông tin sách đã mượn của người dùng
+        borrowed_books = borrowed_df[borrowed_df['user_id'] == user_id]
+        total_fee = 0
+        current_date = datetime.now().date()
+
+        # Lặp qua từng sách mượn
+        for _, row in borrowed_books.iterrows():
+            book_id = row['book_id']
+            start_date = datetime.strptime(row['start_date'], "%Y-%m-%d").date()
+            end_date = datetime.strptime(row['end_date'], "%Y-%m-%d").date()
+            returned_date = row['returned'] if pd.notna(row['returned']) else None
+
+            # Lấy thông tin sách
+            book_data = books_df[books_df['book_id'] == book_id]
+            if book_data.empty:
+                continue  # Nếu không tìm thấy sách, bỏ qua
+            price_per_day = book_data['price_per_day'].values[0]
+
+            # Tính số ngày trễ nếu có
+            late_fee = 0
+            if returned_date:
+                returned_date = datetime.strptime(returned_date, "%Y-%m-%d").date()
+                if returned_date > end_date:
+                    late_days = (returned_date - end_date).days
+                    late_fee = late_days * 10000  # Phí trễ, giả sử 10,000 VNĐ/ngày trễ
+
+            # Tính phí mượn sách
+            if returned_date:
+                days_borrowed = (returned_date - start_date).days
+            else:
+                days_borrowed = (current_date - start_date).days
+
+            book_fee = days_borrowed * price_per_day
+            total_fee += book_fee + late_fee
+
+        # Thông báo tổng số tiền phải trả
+        if total_fee > 0:
+            dispatcher.utter_message(f"{user_name}, bạn phải trả tổng cộng {total_fee} VNĐ cho các cuốn sách đã mượn.")
+        else:
+            dispatcher.utter_message(f"{user_name}, bạn không có sách nào mượn hoặc chưa có khoản phí nào.")
+
+        return []
+
+class ActionGetBookDescription(Action):
+    def name(self) -> str:
+        return "action_get_book_description"
+
+    def run(self, dispatcher, tracker, domain):
+        # Lấy thông tin từ slot (người dùng có thể hỏi theo tên sách hoặc ID sách)
+        book_query = tracker.get_slot("book_query")  # Cái này sẽ chứa thông tin như tên sách hoặc ID sách
+
+        # Kiểm tra nếu không có tên sách
+        if not book_query:
+            dispatcher.utter_message("Vui lòng cung cấp tên sách hoặc ID sách để tra cứu thông tin.")
+            return []
+
+        # Đọc dữ liệu từ tệp sách
+        books_df = pd.read_csv("books.csv")
+
+        # Kiểm tra nếu book_query là ID sách (số)
+        if book_query.isdigit():
+            book_id = int(book_query)
+            book_data = books_df[books_df['book_id'] == book_id]
+        else:
+            # Nếu book_query là tên sách, tìm kiếm sách theo tên
+            book_data = books_df[books_df['title'].str.contains(book_query, case=False, na=False)]
+
+        # Nếu không tìm thấy sách
+        if book_data.empty:
+            dispatcher.utter_message(f"Không tìm thấy thông tin về cuốn sách '{book_query}'.")
+            return []
+
+        # Nếu tìm thấy sách, trả về mô tả sách
+        book_title = book_data['title'].values[0]
+        book_description = book_data['describe'].values[0]
+
+        dispatcher.utter_message(f"Mô tả về cuốn sách '{book_title}': {book_description}")
+
+        return []
 
 class ActionCheckBookAvailability(Action):
     def name(self) -> Text:

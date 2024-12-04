@@ -1,0 +1,11 @@
+user_id,user_name,email,phone,membership_date,is_active
+1,?ình H?ng,a.nguyen@example.com,901123456,1/1/2023,TRUE
+2,Tr?ng Ngh?a,b.tran@example.com,902234567,2/15/2023,TRUE
+3,V?n Hoàng,c.le@example.com,903345678,3/10/2023,TRUE
+4,Thanh H?i ,d.pham@example.com,904456789,4/5/2023,TRUE
+5,T??ng Vi,e.hoang@example.com,905567890,5/20/2023,TRUE
+6,Th?o Vân,f.vu@example.com,906678901,6/15/2023,TRUE
+7,V?n C??ng,g.dinh@example.com,907789012,7/10/2023,FALSE
+8,H?ng Thanh,h.phung@example.com,908890123,8/5/2023,TRUE
+9,Quang Linh,i.ngo@example.com,909901234,9/20/2023,TRUE
+10,B?o B?o,k.bui@example.com,910012345,10/15/2023,TRUE
