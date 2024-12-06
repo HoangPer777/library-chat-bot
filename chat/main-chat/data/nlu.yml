@@ -39,6 +39,24 @@ nlu:
       - Mượn sách kiểu gì
       - Làm thế nào để mượn sách
 
+  - intent: ask_register_card
+    examples: |
+      - Làm sao để đăng ký thẻ thư viện?
+      - Đăng ký thẻ thư viện như thế nào?
+      - Tôi cần làm gì để có thẻ thư viện?
+
+  - intent: ask_lost_book
+    examples: |
+      - Mất sách phải làm gì?
+      - Tôi làm sao khi mất sách?
+      - Mất sách thư viện phải đền bao nhiêu?
+
+  - intent: ask_recommended_books
+    examples: |
+      - Có sách tham khảo nào về [khoa học máy tính](category) không?
+      - Bạn có sách về [lập trình Python](category) không?
+      - Có sách nào liên quan đến [lịch sử](category) không?
+
   - intent: search_book
     examples: |
       - Tôi muốn tìm sách [Harry Potter](book_name)
@@ -46,4 +64,3 @@ nlu:
       - Tôi muốn tìm sách về [khoa học máy tính](category)
       - Có sách nào viết bởi [Agatha Christie](author) không?
       - Tôi cần sách về [lập trình Python](category)
-

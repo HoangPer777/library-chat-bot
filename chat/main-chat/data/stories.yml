@@ -17,6 +17,21 @@ stories:
       - intent: ask_borrowing_policy
       - action: utter_ask_borrowing_policy
 
+  - story: Hỏi cách đăng ký thẻ thư viện
+    steps:
+      - intent: ask_register_card
+      - action: utter_ask_register_card
+
+  - story: Hỏi về sách bị mất
+    steps:
+      - intent: ask_lost_book
+      - action: utter_ask_lost_book
+
+  - story: Hỏi về sách tham khảo
+    steps:
+      - intent: ask_reference_books
+      - action: action_get_reference_books
+
   - story: Chào hỏi và tạm biệt
     steps:
       - intent: greet
@@ -29,8 +44,14 @@ stories:
       - intent: greet
       - action: utter_iamabot
 
-
   - story: Tìm kiếm sách theo tên, tác giả hoặc chủ đề
     steps:
       - intent: search_book
+      - action: action_search_book
+
+  - story: tìm sách tham khảo Java
+    steps:
+      - intent: search_book
+        entities:
+          - book_name: "sách tham khảo Java"
       - action: action_search_book
