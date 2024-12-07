@@ -5,7 +5,13 @@ intents:
   - ask_book_availability
   - ask_opening_hours
   - ask_borrowing_policy
+  - ask_register_card
+  - ask_lost_book
+  - ask_recommended_books
   - search_book
+  - bot_challenge
+  - ask_reference_books
+
 
 entities:
   - book_name
@@ -28,13 +34,24 @@ responses:
   utter_ask_borrowing_policy:
     - text: "Để mượn sách, bạn cần đăng ký thẻ thư viện. Hạn mượn tối đa là 14 ngày."
 
+  utter_ask_register_card:
+    - text: "Để đăng ký thẻ thư viện, bạn cần cung cấp thông tin cá nhân và đến văn phòng thư viện để làm thủ tục."
+
+  utter_ask_lost_book:
+    - text: "Khi mất sách, bạn cần báo ngay cho thư viện và đền bù chi phí sách bị mất."
+
+  utter_ask_recommended_books:
+    - text: "Dưới đây là một số sách tham khảo về {category}: [Tên sách]."
+
   utter_iamabot:
-    - text: "Tôi là chatbot thư viện. Tôi có thể giúp gì"
+    - text: "Tôi là chatbot thư viện. Tôi có thể giúp gì?"
 
   utter_ask_search_book:
     - text: "Bạn muốn tìm sách theo tên, tác giả, hay chủ đề nào?"
+
   utter_search_result:
     - text: "Dưới đây là kết quả tìm kiếm cho yêu cầu của bạn: {result}"
+
   utter_no_result:
     - text: "Xin lỗi, không tìm thấy sách nào phù hợp với yêu cầu của bạn."
 
@@ -42,3 +59,17 @@ actions:
   - action_check_book_availability
   - action_iamabot
   - action_search_book
+  - action_register_card
+  - action_lost_book
+  - action_recommended_books
+  - action_get_reference_books
+  - action_set_category
+  - action_get_recommended_books
+
+slots:
+  category:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: category
