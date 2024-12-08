@@ -4,28 +4,28 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: ask_opening_hours
-      - action: utter_ask_opening_hours
+#      - intent: ask_opening_hours
+#      - action: utter_ask_opening_hours
 
   - story: Tìm sách trong thư viện
     steps:
       - intent: ask_book_availability
       - action: utter_ask_book_availability
 
-  - story: Hỏi chính sách mượn sách
-    steps:
-      - intent: ask_borrowing_policy
-      - action: utter_ask_borrowing_policy
-
-  - story: Hỏi cách đăng ký thẻ thư viện
-    steps:
-      - intent: ask_register_card
-      - action: utter_ask_register_card
-
-  - story: Hỏi về sách bị mất
-    steps:
-      - intent: ask_lost_book
-      - action: utter_ask_lost_book
+#  - story: Hỏi chính sách mượn sách
+#    steps:
+#      - intent: ask_borrowing_policy
+#      - action: utter_ask_borrowing_policy
+#
+#  - story: Hỏi cách đăng ký thẻ thư viện
+#    steps:
+#      - intent: ask_register_card
+#      - action: utter_ask_register_card
+#
+#  - story: Hỏi về sách bị mất
+#    steps:
+#      - intent: ask_lost_book
+#      - action: utter_ask_lost_book
 
   - story: Hỏi về sách tham khảo
     steps:
@@ -55,3 +55,23 @@ stories:
         entities:
           - book_name: "sách tham khảo Java"
       - action: action_search_book
+
+  - story: ask library rules
+    steps:
+      - intent: ask_library_rules
+      - action: utter_library_rules
+
+  - story: ask borrow and return process
+    steps:
+      - intent: ask_borrow_return
+      - action: utter_borrow_return
+
+  - story: ask opening hours
+    steps:
+      - intent: ask_opening_hours
+      - action: utter_opening_hours
+
+  - story: ask services
+    steps:
+      - intent: ask_services
+      - action: utter_services
