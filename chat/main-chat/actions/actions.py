@@ -118,3 +118,8 @@ class ActionGetRecommendedBooks(Action):
                 text=f"Dưới đây là một số sách tham khảo về {category}: {', '.join(recommended_books)}")
 
         return []
+
+from rasa_sdk import Action
+
+
+

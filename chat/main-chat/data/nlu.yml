@@ -23,33 +23,33 @@ nlu:
       - Sách [Sherlock Holmes](book_name) có sẵn không?
       - Tôi muốn tìm sách [Lập trình Python](book_name)
 
-  - intent: ask_opening_hours
-    examples: |
-      - Thư viện mở cửa lúc mấy giờ?
-      - Giờ hoạt động của thư viện là gì?
-      - Thư viện đóng cửa lúc nào?
-      - Mấy giờ thư viện đóng
-      - Mấy giờ thư viện mở
-
-  - intent: ask_borrowing_policy
-    examples: |
-      - Làm sao để mượn sách?
-      - Chính sách mượn sách là gì?
-      - Tôi cần thẻ gì để mượn sách?
-      - Mượn sách kiểu gì
-      - Làm thế nào để mượn sách
-
-  - intent: ask_register_card
-    examples: |
-      - Làm sao để đăng ký thẻ thư viện?
-      - Đăng ký thẻ thư viện như thế nào?
-      - Tôi cần làm gì để có thẻ thư viện?
-
-  - intent: ask_lost_book
-    examples: |
-      - Mất sách phải làm gì?
-      - Tôi làm sao khi mất sách?
-      - Mất sách thư viện phải đền bao nhiêu?
+#  - intent: ask_opening_hours
+#    examples: |
+#      - Thư viện mở cửa lúc mấy giờ?
+#      - Giờ hoạt động của thư viện là gì?
+#      - Thư viện đóng cửa lúc nào?
+#      - Mấy giờ thư viện đóng
+#      - Mấy giờ thư viện mở
+#
+#  - intent: ask_borrowing_policy
+#    examples: |
+#      - Làm sao để mượn sách?
+#      - Chính sách mượn sách là gì?
+#      - Tôi cần thẻ gì để mượn sách?
+#      - Mượn sách kiểu gì
+#      - Làm thế nào để mượn sách
+#
+#  - intent: ask_register_card
+#    examples: |
+#      - Làm sao để đăng ký thẻ thư viện?
+#      - Đăng ký thẻ thư viện như thế nào?
+#      - Tôi cần làm gì để có thẻ thư viện?
+#
+#  - intent: ask_lost_book
+#    examples: |
+#      - Mất sách phải làm gì?
+#      - Tôi làm sao khi mất sách?
+#      - Mất sách thư viện phải đền bao nhiêu?
 
   - intent: ask_recommended_books
     examples: |
@@ -64,3 +64,27 @@ nlu:
       - Tôi muốn tìm sách về [khoa học máy tính](category)
       - Có sách nào viết bởi [Agatha Christie](author) không?
       - Tôi cần sách về [lập trình Python](category)
+
+  - intent: ask_library_rules
+    examples: |
+      - Quy định của thư viện là gì?
+      - Làm thế nào để đăng ký thành viên?
+      - Thư viện có quy tắc gì?
+
+  - intent: ask_borrow_return
+    examples: |
+      - Làm sao để mượn sách?
+      - Quy trình trả sách thế nào?
+      - Tôi muốn biết cách mượn/trả sách
+
+  - intent: ask_opening_hours
+    examples: |
+      - Giờ mở cửa của thư viện là gì?
+      - Thư viện mở cửa lúc mấy giờ?
+      - Hôm nay thư viện có mở không?
+
+  - intent: ask_services
+    examples: |
+      - Thư viện có những dịch vụ nào?
+      - Tôi muốn biết các dịch vụ ở đây
+      - Thư viện có hỗ trợ wifi không?
