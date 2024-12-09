@@ -2,7 +2,8 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-import pandas as pd
+# import pandas as pd
+import csv
 
 class ActionCheckBookAvailability(Action):
     def name(self) -> Text:
@@ -44,11 +45,11 @@ class ActionSearchBook(Action):
         author = next(tracker.get_latest_entity_values("author"), None)
         category = next(tracker.get_latest_entity_values("category"), None)
 
-        # Giả lập dữ liệu thư viện
+        # Giả lập dữ liệu thư viện với thông tin số lượng và vị trí
         library_books = [
-            {"name": "Harry Potter", "author": "J.K. Rowling", "category": "Fantasy"},
-            {"name": "Sherlock Holmes", "author": "Arthur Conan Doyle", "category": "Mystery"},
-            {"name": "Lập trình Python", "author": "Hoàng Phạm", "category": "Computer Science"}
+            {"name": "Harry Potter", "author": "J.K. Rowling", "category": "Fantasy", "quantity": 3, "location": "kệ 2 dãy 5"},
+            {"name": "Sherlock Holmes", "author": "Arthur Conan Doyle", "category": "Mystery", "quantity": 5, "location": "kệ 1 dãy 3"},
+            {"name": "Lập trình Python", "author": "Hoàng Phan", "category": "Computer Science", "quantity": 2, "location": "kệ 3 dãy 1"}
         ]
 
         # Tìm kiếm sách
@@ -57,7 +58,8 @@ class ActionSearchBook(Action):
             if (book_name and book_name.lower() in book["name"].lower()) or \
                 (author and author.lower() in book["author"].lower()) or \
                 (category and category.lower() in book["category"].lower()):
-                results.append(f"{book['name']} by {book['author']} ({book['category']})")
+                # Thêm thông tin số lượng và vị trí vào kết quả
+                results.append(f"{book['name']} by {book['author']} ({book['category']}) - Số lượng: {book['quantity']} - Vị trí: {book['location']}")
 
         # Phản hồi kết quả
         if results:
@@ -67,7 +69,6 @@ class ActionSearchBook(Action):
             dispatcher.utter_message(text="Xin lỗi, không tìm thấy sách phù hợp với yêu cầu của bạn.")
 
         return []
-
 
 class ActionSetCategory(Action):
     def name(self):
@@ -119,7 +120,47 @@ class ActionGetRecommendedBooks(Action):
 
         return []
 
-from rasa_sdk import Action
+
+class ActionFindBook(Action):
+    def name(self) -> Text:
+        return "action_find_book"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: dict) -> list:
+        # Lấy từ khóa từ câu hỏi của người dùng
+        book_title = tracker.get_slot("book_title")
+
+        if not book_title:
+            dispatcher.utter_message(text="Vui lòng nhập tên sách bạn muốn tìm!")
+            return []
+
+        # Đường dẫn đến file CSV
+        file_path = "data/books.csv"
+
+        # Đọc file CSV và tìm sách
+        book_found = None
+        try:
+            with open(file_path, newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    if book_title.lower() in row['Title'].lower():
+                        book_found = row
+                        break
+        except FileNotFoundError:
+            dispatcher.utter_message(text="Không tìm thấy file dữ liệu sách.")
+            return []
+
+        # Phản hồi kết quả
+        if book_found:
+            message = (f"Sách '{book_found['Title']}' của tác giả {book_found['Author']} "
+                       f"đang ở {book_found['Location']}. "
+                       f"Số lượng còn lại: {book_found['Quantity']}.")
+            dispatcher.utter_message(text=message)
+        else:
+            dispatcher.utter_message(text=f"Không tìm thấy sách có tên '{book_title}'.")
+
+        return []
 
 
 

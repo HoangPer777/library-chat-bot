@@ -15,11 +15,14 @@ intents:
   - ask_borrow_return
   - ask_opening_hours
   - ask_services
+  - find_book
+  - search_by_category
 
 entities:
   - book_name
   - author
   - category
+  - action_find_book
 
 responses:
   utter_greet:
@@ -30,6 +33,12 @@ responses:
 
   utter_ask_book_availability:
     - text: "Vui lòng đợi, tôi sẽ kiểm tra sách {book_name} cho bạn."
+
+  utter_ask_book_title:
+    - text: "Vui lòng cho tôi biết tên sách bạn muốn tìm."
+
+  utter_ask_category:
+    - text: "Bạn muốn tìm sách thuộc thể loại nào?"
 
 #  utter_ask_opening_hours:
 #    - text: "Thư viện mở cửa từ 8h sáng đến 6h tối từ thứ 2 đến thứ 7."
@@ -70,6 +79,9 @@ responses:
   utter_services:
     - text: "Thư viện cung cấp dịch vụ: Wifi miễn phí, máy tính tra cứu, và phòng học nhóm."
 
+  utter_search_by_category:
+    - text: "Tìm sách theo thể loại..."
+
 actions:
   - action_check_book_availability
   - action_iamabot
@@ -80,6 +92,7 @@ actions:
   - action_get_reference_books
   - action_set_category
   - action_get_recommended_books
+  - action_find_book
 
 slots:
   category:
@@ -88,3 +101,10 @@ slots:
     mappings:
       - type: from_entity
         entity: category
+
+  book_title:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: book_title
