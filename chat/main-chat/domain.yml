@@ -16,6 +16,7 @@ intents:
   - ask_opening_hours
   - ask_services
   - find_book
+  - search_by_category
 
 entities:
   - book_name
@@ -77,6 +78,9 @@ responses:
 
   utter_services:
     - text: "Thư viện cung cấp dịch vụ: Wifi miễn phí, máy tính tra cứu, và phòng học nhóm."
+
+  utter_search_by_category:
+    - text: "Tìm sách theo thể loại..."
 
 actions:
   - action_check_book_availability

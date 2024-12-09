@@ -45,11 +45,11 @@ class ActionSearchBook(Action):
         author = next(tracker.get_latest_entity_values("author"), None)
         category = next(tracker.get_latest_entity_values("category"), None)
 
-        # Giả lập dữ liệu thư viện
+        # Giả lập dữ liệu thư viện với thông tin số lượng và vị trí
         library_books = [
-            {"name": "Harry Potter", "author": "J.K. Rowling", "category": "Fantasy"},
-            {"name": "Sherlock Holmes", "author": "Arthur Conan Doyle", "category": "Mystery"},
-            {"name": "Lập trình Python", "author": "Hoàng Phan", "category": "Computer Science"}
+            {"name": "Harry Potter", "author": "J.K. Rowling", "category": "Fantasy", "quantity": 3, "location": "kệ 2 dãy 5"},
+            {"name": "Sherlock Holmes", "author": "Arthur Conan Doyle", "category": "Mystery", "quantity": 5, "location": "kệ 1 dãy 3"},
+            {"name": "Lập trình Python", "author": "Hoàng Phan", "category": "Computer Science", "quantity": 2, "location": "kệ 3 dãy 1"}
         ]
 
         # Tìm kiếm sách
@@ -58,7 +58,8 @@ class ActionSearchBook(Action):
             if (book_name and book_name.lower() in book["name"].lower()) or \
                 (author and author.lower() in book["author"].lower()) or \
                 (category and category.lower() in book["category"].lower()):
-                results.append(f"{book['name']} by {book['author']} ({book['category']})")
+                # Thêm thông tin số lượng và vị trí vào kết quả
+                results.append(f"{book['name']} by {book['author']} ({book['category']}) - Số lượng: {book['quantity']} - Vị trí: {book['location']}")
 
         # Phản hồi kết quả
         if results:
@@ -68,7 +69,6 @@ class ActionSearchBook(Action):
             dispatcher.utter_message(text="Xin lỗi, không tìm thấy sách phù hợp với yêu cầu của bạn.")
 
         return []
-
 
 class ActionSetCategory(Action):
     def name(self):
