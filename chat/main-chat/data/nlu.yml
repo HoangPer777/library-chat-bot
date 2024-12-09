@@ -88,3 +88,12 @@ nlu:
       - Thư viện có những dịch vụ nào?
       - Tôi muốn biết các dịch vụ ở đây
       - Thư viện có hỗ trợ wifi không?
+
+  - intent: find_book
+    examples: |
+      - Tôi muốn tìm sách [Lập trình Java](book_title)
+      - Sách về [Học máy](book_title)
+  - intent: search_by_category
+    examples: |
+      - Tìm sách về [lập trình](category)
+      - Tôi muốn sách [khoa học](category)
