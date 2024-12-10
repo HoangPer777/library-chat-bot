@@ -23,21 +23,39 @@ nlu:
       - Sách [Sherlock Holmes](book_name) có sẵn không?
       - Tôi muốn tìm sách [Lập trình Python](book_name)
 
-  - intent: ask_opening_hours
-    examples: |
-      - Thư viện mở cửa lúc mấy giờ?
-      - Giờ hoạt động của thư viện là gì?
-      - Thư viện đóng cửa lúc nào?
-      - Mấy giờ thư viện đóng
-      - Mấy giờ thư viện mở
+#  - intent: ask_opening_hours
+#    examples: |
+#      - Thư viện mở cửa lúc mấy giờ?
+#      - Giờ hoạt động của thư viện là gì?
+#      - Thư viện đóng cửa lúc nào?
+#      - Mấy giờ thư viện đóng
+#      - Mấy giờ thư viện mở
+#
+#  - intent: ask_borrowing_policy
+#    examples: |
+#      - Làm sao để mượn sách?
+#      - Chính sách mượn sách là gì?
+#      - Tôi cần thẻ gì để mượn sách?
+#      - Mượn sách kiểu gì
+#      - Làm thế nào để mượn sách
+#
+#  - intent: ask_register_card
+#    examples: |
+#      - Làm sao để đăng ký thẻ thư viện?
+#      - Đăng ký thẻ thư viện như thế nào?
+#      - Tôi cần làm gì để có thẻ thư viện?
+#
+#  - intent: ask_lost_book
+#    examples: |
+#      - Mất sách phải làm gì?
+#      - Tôi làm sao khi mất sách?
+#      - Mất sách thư viện phải đền bao nhiêu?
 
-  - intent: ask_borrowing_policy
+  - intent: ask_recommended_books
     examples: |
-      - Làm sao để mượn sách?
-      - Chính sách mượn sách là gì?
-      - Tôi cần thẻ gì để mượn sách?
-      - Mượn sách kiểu gì
-      - Làm thế nào để mượn sách
+      - Có sách tham khảo nào về [khoa học máy tính](category) không?
+      - Bạn có sách về [lập trình Python](category) không?
+      - Có sách nào liên quan đến [lịch sử](category) không?
 
   - intent: search_book
     examples: |
@@ -53,7 +71,18 @@ nlu:
       - Số sách tôi đã mượn là bao nhiêu?
       - Cập nhật số sách đã mượn của tôi
       - Lượng sách tôi thuê ?
-      - Tôi đã thuê được bao nhiêu cuốn ? 
+      - Tôi đã thuê được bao nhiêu cuốn ?
+  - intent: ask_library_rules
+    examples: |
+      - Quy định của thư viện là gì?
+      - Làm thế nào để đăng ký thành viên?
+      - Thư viện có quy tắc gì?
+
+  - intent: ask_borrow_return
+    examples: |
+      - Làm sao để mượn sách?
+      - Quy trình trả sách thế nào?
+      - Tôi muốn biết cách mượn/trả sách
 
   - intent: check_history_borrowed
     examples: |
@@ -61,16 +90,36 @@ nlu:
       - Thông tin của những cuốn sách tôi đã mượn ?
       - Chi tiết những sách tôi đã thuê ?
       - Lịch sử sách đã thuê ?
-      
+
   - intent: ask_return_fee
     examples: |
       - Số tiền tôi phải trả khi trả sách
       - Tiền phạt nếu tôi trả sách muộn
       - Tôi cần trả bao nhiêu tiền cho sách
-      
+
   - intents: ask_book_description
     examples: |
           - Cho tôi biết về cuốn sách {book_query}
           - Mô tả cuốn sách {book_query}
           - Sách {book_query} nói về gì?
           - Tôi muốn biết mô tả của cuốn sách {book_query}
+  - intent: ask_opening_hours
+    examples: |
+      - Giờ mở cửa của thư viện là gì?
+      - Thư viện mở cửa lúc mấy giờ?
+      - Hôm nay thư viện có mở không?
+
+  - intent: ask_services
+    examples: |
+      - Thư viện có những dịch vụ nào?
+      - Tôi muốn biết các dịch vụ ở đây
+      - Thư viện có hỗ trợ wifi không?
+
+  - intent: find_book
+    examples: |
+      - Tôi muốn tìm sách [Lập trình Java](book_title)
+      - Sách về [Học máy](book_title)
+  - intent: search_by_category
+    examples: |
+      - Tìm sách về [lập trình](category)
+      - Tôi muốn sách [khoa học](category)

@@ -16,3 +16,12 @@ rules: #Mục đích: Bắt đầu định nghĩa các quy tắc xử lý đối
   steps:
   - intent: ask_return_fee
   - action: action_calculate_return_fee
+#- rule: Tìm sách theo tên
+#  steps:
+#    - intent: find_book
+#    - action: utter_ask_book_title
+#    - intent: find_book
+#      entities:
+#        - book_title: "Lập trình Java"
+#    - action: action_find_book
+

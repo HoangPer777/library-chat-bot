@@ -3,16 +3,28 @@ intents:
   - greet
   - goodbye
   - ask_book_availability
-  - ask_opening_hours
-  - ask_borrowing_policy
+#  - ask_opening_hours
+#  - ask_borrowing_policy
+#  - ask_register_card
+#  - ask_lost_book
+  - ask_recommended_books
   - search_book
   - ask_return_fee
+  - bot_challenge
+  - ask_reference_books
+  - ask_library_rules
+  - ask_borrow_return
+  - ask_opening_hours
+  - ask_services
+  - find_book
+  - search_by_category
 
 entities:
   - book_name
   - author
   - category
   - user_id
+  - action_find_book
 
 responses:
   utter_greet:
@@ -24,21 +36,34 @@ responses:
   utter_ask_book_availability:
     - text: "Vui lòng đợi, tôi sẽ kiểm tra sách {book_name} cho bạn."
 
-  utter_ask_opening_hours:
-    - text: "Thư viện mở cửa từ 8h sáng đến 6h tối từ thứ 2 đến thứ 7."
+  utter_ask_book_title:
+    - text: "Vui lòng cho tôi biết tên sách bạn muốn tìm."
 
-  utter_ask_borrowing_policy:
-    - text: "Để mượn sách, bạn cần đăng ký thẻ thư viện. Hạn mượn tối đa là 14 ngày."
+  utter_ask_category:
+    - text: "Bạn muốn tìm sách thuộc thể loại nào?"
+
+#  utter_ask_opening_hours:
+#    - text: "Thư viện mở cửa từ 8h sáng đến 6h tối từ thứ 2 đến thứ 7."
+#
+#  utter_ask_borrowing_policy:
+#    - text: "Để mượn sách, bạn cần đăng ký thẻ thư viện. Hạn mượn tối đa là 14 ngày."
+#
+#  utter_ask_register_card:
+#    - text: "Để đăng ký thẻ thư viện, bạn cần cung cấp thông tin cá nhân và đến văn phòng thư viện để làm thủ tục."
+#
+#  utter_ask_lost_book:
+#    - text: "Khi mất sách, bạn cần báo ngay cho thư viện và đền bù chi phí sách bị mất."
+
+  utter_ask_recommended_books:
+    - text: "Dưới đây là một số sách tham khảo về {category}: [Tên sách]."
 
   utter_iamabot:
-    - text: "Tôi là chatbot thư viện. Tôi có thể giúp gì"
+    - text: "Tôi là chatbot thư viện. Tôi có thể giúp gì?"
 
   utter_ask_search_book:
     - text: "Bạn muốn tìm sách theo tên, tác giả, hay chủ đề nào?"
-
   utter_search_result:
     - text: "Dưới đây là kết quả tìm kiếm cho yêu cầu của bạn: {result}"
-
   utter_no_result:
     - text: "Xin lỗi, không tìm thấy sách nào phù hợp với yêu cầu của bạn."
 
@@ -48,6 +73,21 @@ responses:
   utter_ask_book_query:
     - text: "Vui lòng cung cấp tên sách hoặc ID sách mà bạn muốn tham khảo."
 
+  utter_library_rules:
+  - text: "Quy định thư viện: Đăng ký thành viên tại quầy lễ tân. Mỗi lần mượn tối đa 3 sách và trả trong vòng 14 ngày."
+
+  utter_borrow_return:
+    - text: "Để mượn sách, bạn cần quét thẻ thành viên và chọn sách tại quầy. Khi trả, vui lòng để sách vào hộp trả sách tự động."
+
+  utter_opening_hours:
+    - text: "Thư viện mở cửa từ Thứ 2 đến Thứ 6: 8:00 - 18:00. Thứ 7: 8:00 - 12:00. Chủ Nhật nghỉ."
+
+  utter_services:
+    - text: "Thư viện cung cấp dịch vụ: Wifi miễn phí, máy tính tra cứu, và phòng học nhóm."
+
+  utter_search_by_category:
+    - text: "Tìm sách theo thể loại..."
+
 actions:
   - action_check_book_availability
   - action_iamabot
@@ -56,6 +96,13 @@ actions:
   - action_check_books_borrowed
   - action_get_detail_history
 
+  - action_register_card
+  - action_lost_book
+  - action_recommended_books
+  - action_get_reference_books
+  - action_set_category
+  - action_get_recommended_books
+  - action_find_book
 
 #lưu biến người dùng khi đăng nhập vào
 slots:
@@ -66,3 +113,16 @@ slots:
   book_query:
     type: text
     influence_conversation: false
+  category:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: category
+
+  book_title:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: book_title

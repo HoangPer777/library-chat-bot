@@ -12,10 +12,25 @@ stories:
       - intent: ask_book_availability
       - action: utter_ask_book_availability
 
-  - story: Hỏi chính sách mượn sách
+#  - story: Hỏi chính sách mượn sách
+#    steps:
+#      - intent: ask_borrowing_policy
+#      - action: utter_ask_borrowing_policy
+#
+#  - story: Hỏi cách đăng ký thẻ thư viện
+#    steps:
+#      - intent: ask_register_card
+#      - action: utter_ask_register_card
+#
+#  - story: Hỏi về sách bị mất
+#    steps:
+#      - intent: ask_lost_book
+#      - action: utter_ask_lost_book
+
+  - story: Hỏi về sách tham khảo
     steps:
-      - intent: ask_borrowing_policy
-      - action: utter_ask_borrowing_policy
+      - intent: ask_reference_books
+      - action: action_get_reference_books
 
   - story: Chào hỏi và tạm biệt
     steps:
@@ -44,3 +59,48 @@ stories:
     steps:
       - intent: check_history_borrowed
       - action: action_get_detail_history
+
+  - story: tìm sách tham khảo Java
+    steps:
+      - intent: search_book
+        entities:
+          - book_name: "sách tham khảo Java"
+      - action: action_search_book
+
+  - story: ask library rules
+    steps:
+      - intent: ask_library_rules
+      - action: utter_library_rules
+
+  - story: ask borrow and return process
+    steps:
+      - intent: ask_borrow_return
+      - action: utter_borrow_return
+
+  - story: ask opening hours
+    steps:
+      - intent: ask_opening_hours
+      - action: utter_opening_hours
+
+  - story: ask services
+    steps:
+      - intent: ask_services
+      - action: utter_services
+
+  - story: Tìm sách theo tên
+    steps:
+      - intent: find_book
+      - action: utter_ask_book_title
+      - intent: find_book
+        entities:
+          - book_title: "Lập trình Java"
+      - action: action_find_book
+
+  - story: Tìm sách theo thể loại
+    steps:
+      - intent: search_by_category
+      - action: utter_ask_category
+      - intent: search_by_category
+        entities:
+          - category: "Lập trình"
+      - action: action_find_book
