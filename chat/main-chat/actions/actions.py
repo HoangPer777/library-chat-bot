@@ -166,7 +166,7 @@ class ActionGetBookDescription(Action):
             return []
 
         # Đọc dữ liệu từ tệp sách
-        books_df = pd.read_csv("books.csv")
+        books_df = pd.read_csv("bookssss.csv")
 
         # Kiểm tra nếu book_query là ID sách (số)
         if book_query.isdigit():
@@ -357,7 +357,7 @@ class ActionFindBook(Action):
             return []
 
         # Đường dẫn đến file CSV
-        file_path = "data/books.csv"
+        file_path = "data/bookssss.csv"
 
         # Đọc file CSV và tìm sách
         book_found = None
