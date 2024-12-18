@@ -22,7 +22,7 @@ entities:
   - book_name
   - author
   - category
-  - action_find_book
+#  - action_find_book
 
 responses:
   utter_greet:
@@ -92,7 +92,7 @@ actions:
   - action_get_reference_books
   - action_set_category
   - action_get_recommended_books
-  - action_find_book
+#  - action_find_book
 
 slots:
   category:
