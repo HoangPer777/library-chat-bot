@@ -12,6 +12,7 @@ rules: #Mục đích: Bắt đầu định nghĩa các quy tắc xử lý đối
   - intent: bot_challenge
   - action: utter_iamabot
 
+
 #- rule: Tìm sách theo tên
 #  steps:
 #    - intent: find_book

@@ -93,3 +93,34 @@ stories:
 #        entities:
 #          - category: "Lập trình"
 #      - action: action_find_book
+  - story: Đăng ký người dùng mới
+    steps:
+      - intent: register_user
+      - action: utter_ask_name
+      - intent: provide_name
+        entities:
+          - name: "Nguyễn Văn A"
+      - action: utter_ask_email
+      - intent: provide_email
+        entities:
+          - email: "user@example.com"
+      - action: utter_ask_password
+      - intent: provide_password
+        entities:
+          - password: "123456"
+      - action: action_register_user
+
+
+  - story: Đăng nhập người dùng
+    steps:
+      - intent: login_user
+      - action: utter_ask_email
+      - intent: provide_email
+        entities:
+          - email: "user@example.com"
+      - action: utter_ask_password
+      - intent: provide_password
+        entities:
+          - password: "securepassword"
+      - action: action_login_user
+

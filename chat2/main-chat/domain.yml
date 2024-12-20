@@ -1,0 +1,16 @@
+version: "3.1"
+
+intents:
+- chào: {"examples": "Xin chào\nHello\nChào bạn"}
+- tạm_biệt: {"examples": "Tạm biệt\nBye\nHẹn gặp lại"}
+
+responses:
+  utter_chào:
+    - text: "Chào bạn, mình có thể giúp gì được không?"
+  utter_tạm_biệt:
+    - text: "Hẹn gặp lại nhé!"
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

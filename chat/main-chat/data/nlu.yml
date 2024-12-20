@@ -68,7 +68,6 @@ nlu:
   - intent: ask_library_rules
     examples: |
       - Quy định của thư viện là gì?
-      - Làm thế nào để đăng ký thành viên?
       - Thư viện có quy tắc gì?
 
   - intent: ask_borrow_return
@@ -97,3 +96,33 @@ nlu:
     examples: |
       - Tìm sách về [lập trình](category)
       - Tôi muốn sách [khoa học](category)
+  - intent: register_user
+    examples: |
+      - Tôi muốn đăng ký
+      - Đăng ký tài khoản
+      - Làm thế nào để tạo tài khoản?
+  - intent: provide_name
+    examples: |
+      - Tên của tôi là [Nguyễn Văn A](name)
+      - Tôi tên là [Hùng](name)
+      - Bạn có thể gọi tôi là [Linh](name)
+      - Tên tôi là [Minh](name)
+      - [Phương](name)
+      - Mình tên là [Nam](name)
+      - [Anh Tú](name)
+
+  - intent: login_user
+    examples: |
+      - Tôi muốn đăng nhập
+      - Đăng nhập vào tài khoản của tôi
+      - Làm thế nào để đăng nhập?
+
+  - intent: provide_email
+    examples: |
+      - Email của tôi là [user@example.com](email)
+      - Địa chỉ email là [john.doe@gmail.com](email)
+
+  - intent: provide_password
+    examples: |
+      - Mật khẩu của tôi là [securepassword](password)
+      - [123456](password)

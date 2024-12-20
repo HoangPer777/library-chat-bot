@@ -4,7 +4,9 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 # import pandas as pd
 import csv
-
+library_users = [
+    {"name": "Admin", "email": "admin@example.com", "password": "adminpass"}
+]
 library_books = [
     {"name": "Harry Potter", "author": "J.K. Rowling", "category": "Fantasy", "quantity": 3, "location": "kệ 2 dãy 5"},
     {"name": "Sherlock Holmes", "author": "Arthur Conan Doyle", "category": "Mystery", "quantity": 5,
@@ -48,6 +50,43 @@ library_books = [
     {"name": "Kafka on the Shore", "author": "Haruki Murakami", "category": "Magical Realism", "quantity": 3,
      "location": "kệ 8 dãy 1"}
 ]
+class ActionRegisterUser(Action):
+    def name(self) -> Text:
+        return "action_register_user"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        name = tracker.get_slot("name")
+        email = tracker.get_slot("email")
+        password = tracker.get_slot("password")
+
+        if name and email and password:
+            # Lưu thông tin vào cơ sở dữ liệu hoặc logic khác
+            message = f"Đăng ký thành công! Chào mừng {name}."
+        else:
+            message = "Thông tin không đầy đủ. Vui lòng thử lại."
+
+        dispatcher.utter_message(text=message)
+        return []
+
+class ActionLoginUser(Action):
+    def name(self) -> Text:
+        return "action_login_user"
+
+    def run(self, dispatcher, tracker, domain):
+        email = tracker.get_slot("email")
+        password = tracker.get_slot("password")
+
+        # Kiểm tra thông tin đăng nhập
+        user = next((user for user in library_users if user["email"] == email and user["password"] == password), None)
+
+        if user:
+            dispatcher.utter_message(response="utter_login_success")
+            return [SlotSet("is_authenticated", True)]
+        else:
+            dispatcher.utter_message(response="utter_login_failure")
+            return [SlotSet("is_authenticated", False)]
 
 class ActionCheckBookAvailability(Action):
     def name(self) -> Text:

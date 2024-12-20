@@ -1,0 +1,13 @@
+version: "3.1"
+
+nlu:
+- intent: chào
+  examples: |
+    - Xin chào
+    - Chào bạn
+    - Hello
+- intent: tạm_biệt
+  examples: |
+    - Tạm biệt
+    - Bye
+    - Hẹn gặp lại

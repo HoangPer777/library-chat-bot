@@ -1,0 +1,12 @@
+version: "3.1"
+
+stories:
+- story: Chào hỏi
+  steps:
+    - intent: chào
+    - action: utter_chào
+
+- story: Tạm biệt
+  steps:
+    - intent: tạm_biệt
+    - action: utter_tạm_biệt
