@@ -11,3 +11,33 @@ nlu:
     - Tạm biệt
     - Bye
     - Hẹn gặp lại
+- intent: introduce_chatbot
+  examples: |
+    - Bạn là ai?
+    - Giới thiệu về bạn.
+    - Bạn có thể làm gì?
+    - Bạn là chatbot gì?
+    - Bạn có thể giúp tôi như thế nào?
+- intent: ask_library_hours
+  examples: |
+    - Thư viện mở cửa vào giờ nào?
+    - Giờ làm việc của thư viện là gì?
+    - Khi nào thư viện hoạt động?
+
+- intent: ask_how_to_borrow_books
+  examples: |
+    - Làm thế nào để mượn sách?
+    - Tôi muốn biết cách mượn sách.
+    - Quy trình mượn sách là gì?
+
+- intent: ask_late_return_policy
+  examples: |
+    - Có thể trả sách muộn không?
+    - Nếu trả sách muộn thì sao?
+    - Phí trả sách muộn là bao nhiêu?
+
+- intent: ask_how_to_extend_books
+  examples: |
+    - Làm sao để gia hạn sách?
+    - Tôi muốn gia hạn sách thì làm thế nào?
+    - Gia hạn sách có dễ không?

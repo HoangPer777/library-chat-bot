@@ -1,15 +1,32 @@
 version: "3.1"
 
 intents:
-- chào: {"examples": "Xin chào\nHello\nChào bạn"}
-- tạm_biệt: {"examples": "Tạm biệt\nBye\nHẹn gặp lại"}
+  - chào: {"examples": "Xin chào\nHello\nChào bạn"}
+  - tạm_biệt: {"examples": "Tạm biệt\nBye\nHẹn gặp lại"}
+  - ask_library_hours
+  - ask_how_to_borrow_books
+  - ask_late_return_policy
+  - ask_how_to_extend_books
+  - introduce_chatbot
 
 responses:
   utter_chào:
     - text: "Chào bạn, mình có thể giúp gì được không?"
   utter_tạm_biệt:
     - text: "Hẹn gặp lại nhé!"
+  utter_introduce_chatbot:
+    - text: "Chào bạn! Tôi là một chatbot quản lý thư viện. Tôi có thể giúp bạn mượn sách, trả sách, gia hạn sách, và trả lời các câu hỏi liên quan đến hoạt động của thư viện. Hãy hỏi tôi bất cứ điều gì về thư viện và tôi sẽ cố gắng hỗ trợ bạn!"
+  utter_ask_library_hours:
+    - text: "Thư viện mở cửa từ 8:00 sáng đến 8:00 tối từ thứ Hai đến thứ Sáu, và từ 9:00 sáng đến 5:00 chiều vào thứ Bảy và Chủ Nhật."
 
+  utter_ask_how_to_borrow_books:
+    - text: "Bạn chỉ cần đến quầy mượn sách và đưa thẻ thư viện cho nhân viên. Họ sẽ hỗ trợ bạn."
+
+  utter_ask_late_return_policy:
+    - text: "Nếu bạn trả sách muộn, sẽ có một khoản phí phạt là 2.000 đồng/ngày cho mỗi cuốn sách."
+
+  utter_ask_how_to_extend_books:
+    - text: "Bạn có thể gia hạn sách qua trang web thư viện hoặc liên hệ trực tiếp với nhân viên tại quầy."
 
 session_config:
   session_expiration_time: 60
