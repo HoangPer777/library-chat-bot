@@ -1,0 +1,17 @@
+{
+  "lookup": {
+    "eJyLrq6NBQAEOAGx": "action_listen",
+    "eJwtisEJgDAMAFfJAE7QVURCKXkEY1rSVJDS3Q3o7467fa4NZjO6MRfnqgnmB6j5ogS/CHcnjXd0snhYQz1yP1GyExr5MMVWhcuz1vEC+0IioA==": "utter_ask_late_return_policy",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fk1iSGl+UWlJalBdfkJ+TmVxZS8DQ0pKS1KJ4HHqJtiMWACBaSeg=": "action_listen",
+    "eJwtisEJgDAMAFfpAE7QVURCKwFLNZEk6iN0dwP6u+Nu9jElPwVvKKs1ppz8A6ByYE6/7E0NKd5LUeJpFGqRtcPGDxhDZZGgytx1jOUFHvUjEw==": "utter_ask_how_to_borrow_books",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fkV8eX5Ifn5RfVARkJeXnZxfXEjC1tKQktSgel2bibYkFAAqnS0E=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnB2fkV8eX5Ifn1oBFEqJT8rPzy6urY0FAB5VIwA=": "utter_ask_how_to_extend_books",
+    "eJyNTdsJgDAMXKUDOIGriISqAUs1kSZVoXR3A/or+nfv60ptXNkS7uBHDUytKzcA8iu27iFLEEWybBZMlglkVM2WCDMfoAx4mjTBwBylfqxmVUzwVv7/0l/+G0sI": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohOSOm1MAg1SC/tjYWAFZ1HG4=": "utter_chào",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEohOSOm1MAg1SC/loA5pSUlqUXxCOX4TIoFAIuwN1I=": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEqhJKbUMDXRMDc+KRPESjYvqa2NBQBoOh/n": "utter_tạm_biệt",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3xEqhJKbUMDXRMDc+KRPESjYvqSVgYGlJSWpRPBZ9RJkdCwAOMkG9": "action_listen",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnA2USypKLKqMz8gvLSqurY0FAFMgIJE=": "utter_ask_library_hours",
+    "eJyLrq7VUaguKEoti09MLsnMz7NSqIYw4vMSc1OtFKCcnMziktQ8oNrS4tQioJrMPCC3BChdnA2USypKLKqMz8gvLSquJWBeaUlJalE8pjZiTI4FAOrtQ7s=": "action_listen"
+  }
+}

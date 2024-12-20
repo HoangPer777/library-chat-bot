@@ -87,20 +87,51 @@ stories:
       - intent: ask_services
       - action: utter_services
 
-  - story: Tìm sách theo tên
-    steps:
-      - intent: find_book
-      - action: utter_ask_book_title
-      - intent: find_book
-        entities:
-          - book_title: "Lập trình Java"
-      - action: action_find_book
+#  - story: Tìm sách theo tên
+#    steps:
+#      - intent: find_book
+#      - action: utter_ask_book_title
+#      - intent: find_book
+#        entities:
+#          - book_title: "Lập trình Java"
+#      - action: action_find_book
 
-  - story: Tìm sách theo thể loại
+#  - story: Tìm sách theo thể loại
+#    steps:
+#      - intent: search_by_category
+#      - action: utter_ask_category
+#      - intent: search_by_category
+#        entities:
+#          - category: "Lập trình"
+#      - action: action_find_book
+  - story: Đăng ký người dùng mới
     steps:
-      - intent: search_by_category
-      - action: utter_ask_category
-      - intent: search_by_category
+      - intent: register_user
+      - action: utter_ask_name
+      - intent: provide_name
         entities:
-          - category: "Lập trình"
-      - action: action_find_book
+          - name: "Nguyễn Văn A"
+      - action: utter_ask_email
+      - intent: provide_email
+        entities:
+          - email: "user@example.com"
+      - action: utter_ask_password
+      - intent: provide_password
+        entities:
+          - password: "123456"
+      - action: action_register_user
+
+
+  - story: Đăng nhập người dùng
+    steps:
+      - intent: login_user
+      - action: utter_ask_email
+      - intent: provide_email
+        entities:
+          - email: "user@example.com"
+      - action: utter_ask_password
+      - intent: provide_password
+        entities:
+          - password: "securepassword"
+      - action: action_login_user
+

@@ -12,10 +12,7 @@ rules: #Mục đích: Bắt đầu định nghĩa các quy tắc xử lý đối
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: Calculate return fee
-  steps:
-  - intent: ask_return_fee
-  - action: action_calculate_return_fee
+
 #- rule: Tìm sách theo tên
 #  steps:
 #    - intent: find_book

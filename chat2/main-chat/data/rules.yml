@@ -1,0 +1,37 @@
+version: "3.1"
+
+rules:
+  - rule: Chào hỏi
+    steps:
+      - intent: chào
+      - action: utter_chào
+
+  - rule: Kết thúc hội thoại
+    steps:
+      - intent: tạm_biệt
+      - action: utter_tạm_biệt
+  - rule: respond to library hours
+    steps:
+      - intent: ask_library_hours
+      - action: utter_ask_library_hours
+
+  - rule: respond to how to borrow books
+    steps:
+      - intent: ask_how_to_borrow_books
+      - action: utter_ask_how_to_borrow_books
+
+  - rule: respond to late return policy
+    steps:
+      - intent: ask_late_return_policy
+      - action: utter_ask_late_return_policy
+
+  - rule: respond to how to extend books
+    steps:
+      - intent: ask_how_to_extend_books
+      - action: utter_ask_how_to_extend_books
+
+  - rule: respond to introduce chatbot
+    steps:
+      - intent: introduce_chatbot
+      - action: utter_introduce_chatbot
+

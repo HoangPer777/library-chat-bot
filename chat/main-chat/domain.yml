@@ -9,7 +9,6 @@ intents:
 #  - ask_lost_book
   - ask_recommended_books
   - search_book
-  - ask_return_fee
   - bot_challenge
   - ask_reference_books
   - ask_library_rules
@@ -18,13 +17,20 @@ intents:
   - ask_services
   - find_book
   - search_by_category
+  - register_user
+  - login_user
+  - provide_email
+  - provide_password
+
 
 entities:
   - book_name
   - author
   - category
-  - user_id
-  - action_find_book
+  - name
+  - email
+  - password
+#  - action_find_book
 
 responses:
   utter_greet:
@@ -62,19 +68,15 @@ responses:
 
   utter_ask_search_book:
     - text: "Bạn muốn tìm sách theo tên, tác giả, hay chủ đề nào?"
+
   utter_search_result:
     - text: "Dưới đây là kết quả tìm kiếm cho yêu cầu của bạn: {result}"
+
   utter_no_result:
     - text: "Xin lỗi, không tìm thấy sách nào phù hợp với yêu cầu của bạn."
 
-  utter_return_fee:
-    - text: "Số tiền bạn cần trả là {return_fee} VND."
-
-  utter_ask_book_query:
-    - text: "Vui lòng cung cấp tên sách hoặc ID sách mà bạn muốn tham khảo."
-
   utter_library_rules:
-  - text: "Quy định thư viện: Đăng ký thành viên tại quầy lễ tân. Mỗi lần mượn tối đa 3 sách và trả trong vòng 14 ngày."
+  - text: "Quy định thư viện: Đăng ký thành viên tại đây. Mỗi lần mượn tối đa 3 sách và trả trong vòng 14 ngày."
 
   utter_borrow_return:
     - text: "Để mượn sách, bạn cần quét thẻ thành viên và chọn sách tại quầy. Khi trả, vui lòng để sách vào hộp trả sách tự động."
@@ -88,31 +90,42 @@ responses:
   utter_search_by_category:
     - text: "Tìm sách theo thể loại..."
 
+  utter_ask_name:
+    - text: "Vui lòng cho tôi biết tên của bạn."
+
+  utter_register_success:
+  - text: "Đăng ký thành công! Bạn có thể đăng nhập bây giờ."
+
+  utter_register_failure:
+    - text: "Đăng ký thất bại. Email này đã được sử dụng."
+
+  utter_login_success:
+    - text: "Đăng nhập thành công! Chào mừng bạn trở lại."
+
+  utter_login_failure:
+    - text: "Email hoặc mật khẩu không đúng. Vui lòng thử lại."
+
+  utter_ask_email:
+    - text: "Vui lòng cung cấp email của bạn."
+
+  utter_ask_password:
+    - text: "Vui lòng nhập mật khẩu."
+
 actions:
   - action_check_book_availability
   - action_iamabot
   - action_search_book
-  - action_get_book_description
-  - action_check_books_borrowed
-  - action_get_detail_history
-
   - action_register_card
   - action_lost_book
   - action_recommended_books
   - action_get_reference_books
   - action_set_category
   - action_get_recommended_books
-  - action_find_book
+#  - action_find_book
+  - action_register_user
+  - action_login_user
 
-#lưu biến người dùng khi đăng nhập vào
 slots:
-  user_id:
-    type: text
-    influence_conversation: false
-
-  book_query:
-    type: text
-    influence_conversation: false
   category:
     type: text
     influence_conversation: false
@@ -126,3 +139,22 @@ slots:
     mappings:
       - type: from_entity
         entity: book_title
+  name:
+    type: text
+    mappings:
+      - type: from_text
+  email:
+    type: text
+    mappings:
+      - type: from_text
+  password:
+    type: text
+    mappings:
+      - type: from_text
+  is_authenticated:
+    type: bool
+    initial_value: false
+    mappings:
+      - type: from_intent
+        value: true
+        intent: login_user
