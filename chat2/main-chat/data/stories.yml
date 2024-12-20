@@ -1,35 +1,41 @@
 version: "3.1"
 
 stories:
-- story: Chào hỏi
-  steps:
-    - intent: chào
-    - action: utter_chào
+  - story: Chào hỏi
+    steps:
+      - intent: chào
+      - action: utter_chào
 
-- story: Tạm biệt
-  steps:
-    - intent: tạm_biệt
-    - action: utter_tạm_biệt
-- story: respond to library hours
-  steps:
-    - intent: ask_library_hours
-    - action: utter_ask_library_hours
+  - story: Tạm biệt
+    steps:
+      - intent: tạm_biệt
+      - action: utter_tạm_biệt
+  - story: respond to library hours
+    steps:
+      - intent: ask_library_hours
+      - action: utter_ask_library_hours
 
-- story: respond to how to borrow books
-  steps:
-    - intent: ask_how_to_borrow_books
-    - action: utter_ask_how_to_borrow_books
+  - story: respond to how to borrow books
+    steps:
+      - intent: ask_how_to_borrow_books
+      - action: utter_ask_how_to_borrow_books
 
-- story: respond to late return policy
-  steps:
-    - intent: ask_late_return_policy
-    - action: utter_ask_late_return_policy
+  - story: respond to late return policy
+    steps:
+      - intent: ask_late_return_policy
+      - action: utter_ask_late_return_policy
 
-- story: respond to how to extend books
-  steps:
-    - intent: ask_how_to_extend_books
-    - action: utter_ask_how_to_extend_books
-- story: introduce chatbot
-  steps:
-    - intent: introduce_chatbot
-    - action: utter_introduce_chatbot
+  - story: respond to how to extend books
+    steps:
+      - intent: ask_how_to_extend_books
+      - action: utter_ask_how_to_extend_books
+
+  - story: introduce chatbot
+    steps:
+      - intent: introduce_chatbot
+      - action: utter_introduce_chatbot
+
+  - story: tìm sách
+    steps:
+      - intent: search_book
+      - action: action_search_book

@@ -8,6 +8,7 @@ intents:
   - ask_late_return_policy
   - ask_how_to_extend_books
   - introduce_chatbot
+  - search_book
 
 responses:
   utter_chào:
@@ -27,6 +28,25 @@ responses:
 
   utter_ask_how_to_extend_books:
     - text: "Bạn có thể gia hạn sách qua trang web thư viện hoặc liên hệ trực tiếp với nhân viên tại quầy."
+
+actions:
+  - action_search_book
+
+slots:
+  book_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: book_name
+  book_location:
+    type: text
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: null
+
+entities:
+  - book_name
 
 session_config:
   session_expiration_time: 60
