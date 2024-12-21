@@ -6,6 +6,9 @@ nlu:
       - Xin chào
       - Chào bạn
       - Hello
+      - Hi
+      - chatbot ơi
+      - alo alo
   - intent: tạm_biệt
     examples: |
       - Tạm biệt
@@ -50,3 +53,10 @@ nlu:
         - Cuốn sách nào về [lập trình Python](book_name)?
         - Bạn có sách [The Alchemist](book_name) không?
         - Tôi muốn mượn cuốn [Mật mã Da Vinci](book_name)
+        - Tôi muốn tìm sách [Harry Potter](book_name)
+        - Có sách nào của [J.K. Rowling](author) không?
+        - Tôi muốn tìm sách về [khoa học máy tính](category)
+        - Có sách nào viết bởi [Agatha Christie](author) không?
+        - Tôi cần sách về [lập trình Python](category)
+        - Tìm sách [Atomic Habits](book_name) không
+        - Sách [Harry Potter](book_name) còn không

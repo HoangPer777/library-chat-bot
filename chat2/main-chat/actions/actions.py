@@ -1,36 +1,10 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
-# https://rasa.com/docs/rasa/custom-actions
 
-
-# This is a simple example for a custom action which utters "Hello World!"
-
-# from typing import Any, Text, Dict, List
-#
-# from rasa_sdk import Action, Tracker
-# from rasa_sdk.executor import CollectingDispatcher
-#
-#
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
 from typing import Any, Text, Dict, List
-from rasa_sdk import Action
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
-from rasa_sdk import Tracker  # Thêm import Tracker
 import re
+from rasa_sdk import Action, Tracker
+from rasa_sdk.events import SlotSet
 
 library_books = [
     {"name": "Harry Potter", "author": "J.K. Rowling", "category": "Fantasy", "quantity": 3, "location": "kệ 2 dãy 5"},
@@ -78,20 +52,28 @@ library_books = [
 
 
 class ActionSearchBook(Action):
-    def name(self) -> str:
+    def name(self) -> Text:
         return "action_search_book"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain) -> list:
-        book_name = tracker.get_slot("book_name")
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        book_name = next(tracker.get_latest_entity_values("book_name"), None)
+        author = next(tracker.get_latest_entity_values("author"), None)
+        category = next(tracker.get_latest_entity_values("category"), None)
 
-        # Tìm kiếm sách trong danh sách
-        book_found = next((book for book in library_books if book_name.lower() in book['name'].lower()), None)
+        # Tìm kiếm sách trong library_books toàn cục
+        results = []
+        for book in library_books:
+            if (book_name and book_name.lower() in book["name"].lower()) or \
+                (author and author.lower() in book["author"].lower()) or \
+                (category and category.lower() in book["category"].lower()):
+                results.append(f"{book['name']} by {book['author']} ({book['category']}) - Số lượng: {book['quantity']} - Vị trí: {book['location']}")
 
-        if book_found:
-            # Trả lời với thông tin vị trí sách và cập nhật slot
-            dispatcher.utter_message(text=f"Cuốn sách {book_found['name']} có tại {book_found['location']}.")
-            return [SlotSet("book_name", book_found['name']), SlotSet("book_location", book_found['location'])]
+        if results:
+            result_message = "\n".join(results)
+            dispatcher.utter_message(text=f"Dưới đây là sách phù hợp:\n{result_message}")
         else:
-            # Nếu không tìm thấy sách
-            dispatcher.utter_message(text="Xin lỗi, chúng tôi không tìm thấy cuốn sách đó trong thư viện.")
-            return [SlotSet("book_name", None), SlotSet("book_location", None)]
+            dispatcher.utter_message(text="Xin lỗi, không tìm thấy sách phù hợp với yêu cầu của bạn.")
+
+        return []
