@@ -9,7 +9,8 @@ intents:
   - ask_how_to_extend_books
   - introduce_chatbot
   - search_book
-
+  - ask_register_card
+  - ask_lost_book
 responses:
   utter_chào:
     - text: "Chào bạn, mình có thể giúp gì được không?"
@@ -19,7 +20,23 @@ responses:
     - text: "Chào bạn! Tôi là một chatbot quản lý thư viện. Tôi có thể giúp bạn mượn sách, trả sách, gia hạn sách, và trả lời các câu hỏi liên quan đến hoạt động của thư viện. Hãy hỏi tôi bất cứ điều gì về thư viện và tôi sẽ cố gắng hỗ trợ bạn!"
   utter_ask_library_hours:
     - text: "Thư viện mở cửa từ 8:00 sáng đến 8:00 tối từ thứ Hai đến thứ Sáu, và từ 9:00 sáng đến 5:00 chiều vào thứ Bảy và Chủ Nhật."
+  utter_ask_register_card:
+    - text: |
+        Để đăng ký thẻ thư viện, bạn cần thực hiện các bước sau:
+        1. Điền thông tin cá nhân vào mẫu đơn đăng ký (mã sinh số sinh viên, họ tên, ngày sinh, khoa, ngành học, địa chỉ, email, số điện thoại).
+        2. Chuẩn bị các giấy tờ cần thiết: Thẻ sinh viên, CCCD/CMND.
+        3. Nộp mẫu đơn và giấy tờ tại quầy đăng ký (tầng trệt thư viện trường Đại học Nông Lâm TP.HCM).
+        4. Chờ xác nhận từ nhân viên thư viện, nếu đầy đủ, hợp lệ, thủ tục đăng kí sẽ hoàn tất.
+        Sau khi đăng ký thành công, bạn sẽ nhận được thẻ thư viện để sử dụng (thường đợi 2 -3 ngày để nhận thẻ).
 
+  utter_ask_lost_book:
+    - text: |
+        Khi làm mất sách, bạn cần làm theo các bước sau:
+        1. Báo ngay cho thư viện qua số điện thoại hoặc đến trực tiếp quầy tiếp nhận.
+        2. Cung cấp thông tin sách bị mất (tên sách, mã sách, ngày mượn).
+        3. Thư viện sẽ kiểm tra và thông báo chi phí đền bù hoặc hình thức thay thế sách.
+        4. Thanh toán chi phí hoặc nộp sách thay thế theo yêu cầu.
+        5. Hoàn tất thủ tục, bạn sẽ nhận được biên lai xác nhận từ thư viện.
   utter_ask_how_to_borrow_books:
     - text: "Bạn chỉ cần đến quầy mượn sách và đưa thẻ thư viện cho nhân viên. Họ sẽ hỗ trợ bạn."
 

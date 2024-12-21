@@ -39,3 +39,12 @@ stories:
     steps:
       - intent: search_book
       - action: action_search_book
+  - story: Hỏi về đăng ký thẻ thư viện
+    steps:
+      - intent: ask_register_card
+      - action: utter_ask_register_card
+
+  - story: Hỏi về làm mất sách
+    steps:
+      - intent: ask_lost_book
+      - action: utter_ask_lost_book
