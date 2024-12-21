@@ -47,16 +47,48 @@ nlu:
 
   - intent: search_book
     examples: |
-        - Tôi muốn tìm cuốn sách [Harry Potter](book_name)
-        - Tìm giúp tôi cuốn sách [Lập trình Python](book_name)
-        - [Sherlock Holmes](book_name) có không?
-        - Cuốn sách nào về [lập trình Python](book_name)?
-        - Bạn có sách [The Alchemist](book_name) không?
-        - Tôi muốn mượn cuốn [Mật mã Da Vinci](book_name)
-        - Tôi muốn tìm sách [Harry Potter](book_name)
-        - Có sách nào của [J.K. Rowling](author) không?
-        - Tôi muốn tìm sách về [khoa học máy tính](category)
-        - Có sách nào viết bởi [Agatha Christie](author) không?
-        - Tôi cần sách về [lập trình Python](category)
-        - Tìm sách [Atomic Habits](book_name) không
-        - Sách [Harry Potter](book_name) còn không
+      - Tôi muốn tìm cuốn sách [Harry Potter](book_name)
+      - Tìm giúp tôi cuốn sách [Lập trình Python](book_name)
+      - [Sherlock Holmes](book_name) có không?
+      - Cuốn sách nào về [lập trình Python](book_name)?
+      - Bạn có sách [The Alchemist](book_name) không?
+      - Tôi muốn mượn cuốn [Mật mã Da Vinci](book_name)
+      - Tôi muốn tìm sách [Harry Potter](book_name)
+      - Có sách nào của [J.K. Rowling](author) không?
+      - Tôi muốn tìm sách về [khoa học máy tính](category)
+      - Có sách nào viết bởi [Agatha Christie](author) không?
+      - Tôi cần sách về [lập trình Python](category)
+      - Tìm sách [Atomic Habits](book_name) không
+      - Sách [Harry Potter](book_name) còn không
+
+  - intent: explain_how_to_borrow_books
+    examples: |
+      - [Giải thích] cách mượn sách ở thư viện.
+      - Bạn có thể [giải thích] quy trình mượn sách không?
+      - Mượn sách như thế nào? [Giải thích] cho tôi.
+      - Xin vui lòng [giải thích] các bước để mượn sách.
+      - Bạn có thể nói rõ [cách] mượn sách được không?
+      - Giải thích [quy trình] mượn sách từ thư viện.
+
+  - intent: explain_late_return_policy
+    examples: |
+      - [Giải thích] chính sách trả sách trễ.
+      - Bạn có thể [giải thích] về việc trả sách trễ không?
+      - Xin [giải thích] về phạt khi trả sách trễ.
+
+  - intent: explain_how_to_extend_books
+    examples: |
+      - [Giải thích] cách gia hạn sách.
+      - Bạn có thể [giải thích] quy trình gia hạn sách không?
+      - [Cách] gia hạn sách như thế nào?
+      - Xin vui lòng [giải thích] các bước gia hạn sách.
+      - [Hướng dẫn] gia hạn sách ở thư viện.
+      - Tôi muốn biết [cách] gia hạn sách.
+      - [Quy trình] gia hạn sách là gì?
+
+  - intent: ask_guide_library
+    examples: |
+      - Bạn có thể [hướng dẫn] tôi về quy trình thư viện không?
+      - [Hướng dẫn] tôi về các dịch vụ thư viện.
+      - Bạn có thể cung cấp thông tin về các [quy định] của thư viện không?
+      - Làm thế nào để tôi có thể sử dụng [dịch vụ] của thư viện?
