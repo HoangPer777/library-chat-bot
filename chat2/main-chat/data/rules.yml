@@ -34,4 +34,13 @@ rules:
     steps:
       - intent: introduce_chatbot
       - action: utter_introduce_chatbot
+  - rule: respond to register card
+    steps:
+      - intent: ask_register_card
+      - action: utter_ask_register_card
+
+  - rule: respond to lost book
+    steps:
+      - intent: ask_lost_book
+      - action: utter_ask_lost_book
 
