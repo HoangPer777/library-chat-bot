@@ -92,3 +92,18 @@ nlu:
       - [Hướng dẫn] tôi về các dịch vụ thư viện.
       - Bạn có thể cung cấp thông tin về các [quy định] của thư viện không?
       - Làm thế nào để tôi có thể sử dụng [dịch vụ] của thư viện?
+
+  - intent: ask_register_card
+    examples: |
+      - Làm sao để đăng ký thẻ thư viện?
+      - Tôi muốn làm thẻ thư viện.
+      - Thủ tục làm thẻ thư viện là gì?
+      - Hướng dẫn đăng ký thẻ thư viện.
+      - Đăng ký thẻ thư viện cần giấy tờ gì?
+
+  - intent: ask_lost_book
+    examples: |
+      - Tôi làm mất sách thì phải làm sao?
+      - Mất sách thì giải quyết thế nào?
+      - Khi mất sách tôi cần làm gì?
+      - Tôi làm mất một cuốn sách, giờ phải làm sao?
