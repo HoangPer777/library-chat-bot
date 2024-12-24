@@ -49,7 +49,7 @@ library_books = [
     {"name": "Kafka on the Shore", "author": "Haruki Murakami", "category": "Magical Realism", "quantity": 3,
      "location": "kệ 8 dãy 1"}
 ]
-
+library_users = [{"id":1,"name":"Hung Le", "usernam":"hung123", "password":"132"}]
 
 class ActionSearchBook(Action):
     def name(self) -> Text:
@@ -76,4 +76,33 @@ class ActionSearchBook(Action):
         else:
             dispatcher.utter_message(text="Xin lỗi, không tìm thấy sách phù hợp với yêu cầu của bạn.")
 
+        return []
+
+
+class ActionSaveUser(Action):
+    def name(self) -> str:
+        return "action_save_user"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+
+        name = tracker.get_slot("name")
+        username = tracker.get_slot("username")
+        password = tracker.get_slot("password")
+        if name is None or username is None or password is None:
+            dispatcher.utter_message(text="Đăng ký thất bại. Vui lòng cung cấp đầy đủ thông tin.")
+            return []
+
+        # Tạo ID tự động cho người dùng mới
+        user_id = len(library_users) + 1
+
+        # Lưu thông tin người dùng vào danh sách
+        library_users.append({
+            "id": user_id,
+            "name": name,
+            "username": username,
+            "password": password
+        })
+
+        dispatcher.utter_message(
+            text=f"Đăng ký thành công! Chúc mừng {name}, bạn đã đăng ký với tên người dùng: {username}.")
         return []

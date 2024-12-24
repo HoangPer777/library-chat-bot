@@ -15,6 +15,11 @@ intents:
   - explain_how_to_extend_books
   - ask_register_card
   - ask_lost_book
+  - register
+  - inform_name
+  - inform_username
+  - inform_password
+
 
 responses:
   utter_chào:
@@ -85,9 +90,21 @@ responses:
         2. Cung cấp thông tin về sách bạn muốn gia hạn cho nhân viên thư viện.
         3. Nhân viên sẽ kiểm tra tình trạng sách và gia hạn cho bạn nếu sách chưa quá hạn.
         4. Nhận thông tin về thời gian gia hạn từ nhân viên thư viện.
+  utter_success_register:
+    - text : "chúc mừng {name} đã đki thành công với tài khoản {username}"
+  utter_ask_name:
+    - text: |
+        Vui lòng điền tên của bạn.
+  utter_ask_username:
+    - text: |
+        Vui lòng điền tên người dùng của bạn.
+  utter_ask_password:
+    - text: |
+        Vui lòng điền mật khẩu của bạn.
 
 actions:
   - action_search_book
+  - action_save_user
 
 slots:
   book_name:
@@ -101,9 +118,35 @@ slots:
       - type: from_text
         conditions:
           - active_loop: null
+  name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+  username:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+  password:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
 
 entities:
   - book_name
+  - name
+  - username
+  - password
+
+forms:
+  registration_form:
+    required_slots:
+      - name
+      - username
+      - password
 
 session_config:
   session_expiration_time: 60
