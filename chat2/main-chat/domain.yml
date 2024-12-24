@@ -106,6 +106,12 @@ actions:
   - action_search_book
   - action_save_user
 
+entities:
+  - book_name
+  - name
+  - username
+  - password
+
 slots:
   book_name:
     type: text
@@ -120,34 +126,20 @@ slots:
           - active_loop: null
   name:
     type: text
-    influence_conversation: false
     mappings:
-      - type: from_text
+      - type: from_entity
+        entity: name
   username:
     type: text
-    influence_conversation: false
     mappings:
-      - type: from_text
+      - type: from_entity
+        entity: username
   password:
     type: text
-    influence_conversation: false
     mappings:
-      - type: from_text
+      - type: from_entity
+        entity: password
 
 
-entities:
-  - book_name
-  - name
-  - username
-  - password
 
-forms:
-  registration_form:
-    required_slots:
-      - name
-      - username
-      - password
 
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true

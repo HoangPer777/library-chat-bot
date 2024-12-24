@@ -44,21 +44,5 @@ rules:
       - intent: ask_lost_book
       - action: utter_ask_lost_book
 
-  - rule: user registration
-    steps:
-      - intent: register
-      - action: utter_ask_name
-      - intent: inform_name
-        entities:
-          - name: "John"
-      - action: utter_ask_username
-      - intent: inform_username
-        entities:
-          - username: "john123"
-      - action: utter_ask_password
-      - intent: inform_password
-        entities:
-          - password: "mypassword"
-      - action: action_save_user
-      - action: utter_success_register
+
 
