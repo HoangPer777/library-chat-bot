@@ -39,6 +39,27 @@ stories:
     steps:
       - intent: search_book
       - action: action_search_book
+
+  - story: Người dùng hỏi quy trình thư viện
+    steps:
+      - intent: ask_guide_library
+      - action: utter_ask_guide_library
+
+  - story: Người dùng hỏi cách mượn sách
+    steps:
+      - intent: explain_how_to_borrow_books
+      - action: utter_explain_how_to_borrow_books
+
+  - story: Người dùng hỏi về chính sách trả sách trễ
+    steps:
+      - intent: explain_late_return_policy
+      - action: utter_explain_late_return_policy
+
+  - story: Người dùng hỏi cách gia hạn sách
+    steps:
+      - intent: explain_how_to_extend_books
+      - action: utter_explain_how_to_extend_books
+
   - story: Hỏi về đăng ký thẻ thư viện
     steps:
       - intent: ask_register_card
