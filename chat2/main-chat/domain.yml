@@ -19,7 +19,7 @@ intents:
   - inform_name
   - inform_username
   - inform_password
-
+  - login
 
 responses:
   utter_chào:
@@ -33,11 +33,12 @@ responses:
   utter_ask_register_card:
     - text: |
         Để đăng ký thẻ thư viện, bạn cần thực hiện các bước sau:
-        1. Điền thông tin cá nhân vào mẫu đơn đăng ký (mã sinh số sinh viên, họ tên, ngày sinh, khoa, ngành học, địa chỉ, email, số điện thoại).
-        2. Chuẩn bị các giấy tờ cần thiết: Thẻ sinh viên, CCCD/CMND.
-        3. Nộp mẫu đơn và giấy tờ tại quầy đăng ký (tầng trệt thư viện trường Đại học Nông Lâm TP.HCM).
-        4. Chờ xác nhận từ nhân viên thư viện, nếu đầy đủ, hợp lệ, thủ tục đăng kí sẽ hoàn tất.
-        Sau khi đăng ký thành công, bạn sẽ nhận được thẻ thư viện để sử dụng (thường đợi 2 -3 ngày để nhận thẻ).
+          1. Điền thông tin cá nhân vào mẫu đơn đăng ký (mã sinh số sinh viên, họ tên, ngày sinh, khoa, ngành học, địa chỉ, email, số điện thoại).
+          2. Chuẩn bị các giấy tờ cần thiết: Thẻ sinh viên, CCCD/CMND.
+          3. Nộp mẫu đơn và giấy tờ tại quầy đăng ký (tầng trệt thư viện trường Đại học Nông Lâm TP.HCM).
+          4. Chờ xác nhận từ nhân viên thư viện, nếu đầy đủ, hợp lệ, thủ tục đăng kí sẽ hoàn tất.
+          Sau khi đăng ký thành công, bạn sẽ nhận được thẻ thư viện để sử dụng (thường đợi 2 -3 ngày để nhận thẻ).
+        Hoặc bạn có thể đăng kí online bằng chatbot tại đây
   utter_ask_lost_book:
     - text: |
         Khi làm mất sách, bạn cần làm theo các bước sau:
@@ -94,17 +95,17 @@ responses:
     - text : "chúc mừng {name} đã đki thành công với tài khoản {username}"
   utter_ask_name:
     - text: |
-        Vui lòng điền tên của bạn.
+        Vui lòng điền tên của bạn theo cú pháp <Tên : (tên của bạn)>.
   utter_ask_username:
     - text: |
-        Vui lòng điền tên người dùng của bạn.
+        Vui lòng điền tên người dùng của bạn theo cú pháp <Username : (username )>.
   utter_ask_password:
     - text: |
-        Vui lòng điền mật khẩu của bạn.
+        Vui lòng điền mật khẩu của bạn theo cú pháp <Password : (password)>.
 
 actions:
   - action_search_book
-  - action_save_user
+  - action_handle_user
 
 entities:
   - book_name

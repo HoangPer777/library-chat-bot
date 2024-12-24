@@ -87,5 +87,19 @@ stories:
       - intent: inform_password
         entities:
           - password: "mypassword"
-      - action: action_save_user
+      - action: action_handle_user
       - action: utter_success_register
+
+  - story: user login
+    steps:
+      - intent: login
+      - action: utter_ask_username
+      - intent: inform_username
+        entities:
+          - username: "hung123"
+      - action: utter_ask_password
+      - intent: inform_password
+        entities:
+          - password: "132"
+      - action: action_handle_user
+

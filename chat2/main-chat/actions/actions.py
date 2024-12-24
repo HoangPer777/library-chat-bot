@@ -49,7 +49,7 @@ library_books = [
     {"name": "Kafka on the Shore", "author": "Haruki Murakami", "category": "Magical Realism", "quantity": 3,
      "location": "kệ 8 dãy 1"}
 ]
-library_users = [{"id":1,"name":"Hung Le", "usernam":"hung123", "password":"132"}]
+library_users = [{"id":1,"name":"Hung Le", "username":"hung123", "password":"haha123"}]
 
 class ActionSearchBook(Action):
     def name(self) -> Text:
@@ -78,17 +78,33 @@ class ActionSearchBook(Action):
 
         return []
 
-
-class ActionSaveUser(Action):
+class ActionHandleUser(Action):
     def name(self) -> str:
-        return "action_save_user"
+        return "action_handle_user"
 
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         name = tracker.get_slot("name")
         username = tracker.get_slot("username")
         password = tracker.get_slot("password")
-        if name is None or username is None or password is None:
+
+        # Kiểm tra nếu `name` là None (người dùng muốn đăng nhập)
+        if name is None:
+            if username is None or password is None:
+                dispatcher.utter_message(text="Vui lòng cung cấp đầy đủ tên đăng nhập và mật khẩu.")
+                return []
+
+            # Thực hiện đăng nhập
+            for user in library_users:
+                if user["username"] == username and user["password"] == password:
+                    dispatcher.utter_message(text=f"Đăng nhập thành công! Chào mừng, {user['name']}.")
+                    return [SlotSet("name", user["name"])]
+
+            dispatcher.utter_message(text="Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại.")
+            return [SlotSet("name", None)]
+
+        # Nếu `name` có giá trị (người dùng muốn đăng ký)
+        if username is None or password is None:
             dispatcher.utter_message(text="Đăng ký thất bại. Vui lòng cung cấp đầy đủ thông tin.")
             return []
 

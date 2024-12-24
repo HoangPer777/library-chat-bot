@@ -100,6 +100,7 @@ nlu:
       - Thủ tục làm thẻ thư viện là gì?
       - Hướng dẫn đăng ký thẻ thư viện.
       - Đăng ký thẻ thư viện cần giấy tờ gì?
+      
 
   - intent: ask_lost_book
     examples: |
@@ -114,67 +115,84 @@ nlu:
       - Hãy giúp tôi tạo tài khoản onl
       - Đăng ký tài khoản tại chatbot
       - Tôi cần tạo tài khoản onl
+      - Đăng kí onl 
+      - Đăng kí thẻ bằng chatbot
+      - Đăng kí tại đây 
+      - Tôi cần đăng kí bây giờ 
+      - Đăng kí
+  - intent: login
+    examples: |
+      - Tôi muốn đăng nhập bằng chatbot
+      - Hãy giúp tôi tạo tài khoản onl
+      - Đăng nhập tài khoản tại chatbot
+      - Tôi cần đăng nhập tài khoản onl
+      - Tôi muốn đăng nhập
+      - Đăng nhập
+      - Đăng nhập cho tôi
+      - Tôi cần đăng nhập
+
   - intent: inform_name
     examples: |
-      - Tên là [John](name)
-      - Tên là [Nguyễn Văn A](name)
-      - Tên là [Lê Thị Bích](name)
-      - Tên là [Minh](name)
-      - Tên là [Hưng Lê](name)
-      - Tên là [Phạm Văn Cường](name)
-      - Tên là [Ngọc Linh](name)
-      - Tên là [Hà My](name)
-      - Tên là [Hải Yến](name)
-      - Tên là [Tiến Linh](name)
-      - Tên là [John](name)
-      - Tên là [Nguyễn Văn A](name)
-      - Tên là [Lê Thị Bích](name)
-      - Tên là [Minh](name)
-      - Tên là [Hưng Lê](name)
-      - Tên là [Phạm Văn Cường](name)
-      - Tên là [Ngọc Linh](name)
-      - Tên là [Trần Minh](name)
+      - Tên: [John](name)
+      - Tên: [Nguyễn Văn A](name)
+      - Tên: [Lê Thị Bích](name)
+      - Tên: [Minh](name)
+      - Tên: [Hưng Lê](name)
+      - Tên: [Phạm Văn Cường](name)
+      - Tên: [Ngọc Linh](name)
+      - Tên: [Hà My](name)
+      - Tên: [Hải Yến](name)
+      - Tên: [Tiến Linh](name)
+      - Tên: [John](name)
+      - Tên: [Nguyễn Văn A](name)
+      - Tên: [Lê Thị Bích](name)
+      - Tên: [Minh](name)
+      - Tên: [Hưng Lê](name)
+      - Tên: [Phạm Văn Cường](name)
+      - Tên: [Ngọc Linh](name)
+      - Tên: [Trần Minh](name)
 
   - intent: inform_username
     examples: |
-      - Username là [hungdepzai](username)
-      - Username là [hoailinh](username)
-      - Username là [hathuo](username)
-      - Username là [minhhoang01](username)
-      - Username của tôi là [thanhthuy88](username)
-      - Username là [hoangngoc21](username)
-      - Username là [myly_2023](username)
-      - Username là [john123](username)
-      - Username là [minhhoang01](username)
-      - Username là [thanhthuy88](username)
-      - Username là [ngocanh95](username)
-      - Username là [baotan123](username)
-      - Username là [user_2024](username)
-      - Username là [hoangngoc21](username)
-      - Username là [thanhdat99](username)
-      - Username là [quanghieu89](username)
-      - Username là [letrung11](username)
-      - Username là [haivy66](username)
-      - Username là [kimanh77](username)
+      - Username: [hungdepzai](username)
+      - Username: [hoailinh](username)
+      - Username: [hathuo](username)
+      - Username: [minhhoang01](username)
+      - Username của tôi: [thanhthuy88](username)
+      - Username: [hoangngoc21](username)
+      - Username: [myly_2023](username)
+      - Username: [john123](username)
+      - Username: [minhhoang01](username)
+      - Username: [thanhthuy88](username)
+      - Username: [ngocanh95](username)
+      - Username: [baotan123](username)
+      - Username: [user_2024](username)
+      - Username: [hoangngoc21](username)
+      - Username: [thanhdat99](username)
+      - Username: [quanghieu89](username)
+      - Username: [letrung11](username)
+      - Username: [haivy66](username)
+      - Username: [kimanh77](username)
 
   - intent: inform_password
     examples: |
-      - Password là [456789](password)
-      - Password là [strongpass88](password)
-      - Password là [password321](password)
-      - Password là [moonlight55](password)
-      - Password là [mypassword123](password)
-      - Password là [helloWorld99](password)
-      - Password là [secure456](password)
-      - Password là [admin2024](password)
-      - Password là [qwerty789](password)
-      - Password là [letmein12](password)
-      - Password là [strongpass88](password)
-      - Password là [alpha999](password)
-      - Password là [test1234](password)
-      - Password là [demo4567](password)
-      - Password là [password321](password)
-      - Password là [safe2023](password)
-      - Password là [vietpass98](password)
-      - Password là [sunshine77](password)
-      - Password là [moonlight55](password)
+      - Password: [456789](password)
+      - Password: [strongpass88](password)
+      - Password: [password321](password)
+      - Password: [moonlight55](password)
+      - Password: [mypassword123](password)
+      - Password: [helloWorld99](password)
+      - Password: [secure456](password)
+      - Password: [admin2024](password)
+      - Password: [qwerty789](password)
+      - Password: [letmein12](password)
+      - Password: [strongpass88](password)
+      - Password: [alpha999](password)
+      - Password: [test1234](password)
+      - Password: [demo4567](password)
+      - Password: [password321](password)
+      - Password: [safe2023](password)
+      - Password: [vietpass98](password)
+      - Password: [sunshine77](password)
+      - Password: [moonlight55](password)
+ 
