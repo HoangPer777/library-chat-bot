@@ -49,7 +49,7 @@ library_books = [
     {"name": "Kafka on the Shore", "author": "Haruki Murakami", "category": "Magical Realism", "quantity": 3,
      "location": "kệ 8 dãy 1"}
 ]
-
+library_users = [{"id":1,"name":"Hung Le", "username":"hung123", "password":"haha123"}]
 
 class ActionSearchBook(Action):
     def name(self) -> Text:
@@ -76,4 +76,49 @@ class ActionSearchBook(Action):
         else:
             dispatcher.utter_message(text="Xin lỗi, không tìm thấy sách phù hợp với yêu cầu của bạn.")
 
+        return []
+
+class ActionHandleUser(Action):
+    def name(self) -> str:
+        return "action_handle_user"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        name = tracker.get_slot("name")
+        username = tracker.get_slot("username")
+        password = tracker.get_slot("password")
+
+        # Kiểm tra nếu `name` là None (người dùng muốn đăng nhập)
+        if name is None:
+            if username is None or password is None:
+                dispatcher.utter_message(text="Vui lòng cung cấp đầy đủ tên đăng nhập và mật khẩu.")
+                return []
+
+            # Thực hiện đăng nhập
+            for user in library_users:
+                if user["username"] == username and user["password"] == password:
+                    dispatcher.utter_message(text=f"Đăng nhập thành công! Chào mừng, {user['name']}.")
+                    return [SlotSet("name", user["name"])]
+
+            dispatcher.utter_message(text="Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại.")
+            return [SlotSet("name", None)]
+
+        # Nếu `name` có giá trị (người dùng muốn đăng ký)
+        if username is None or password is None:
+            dispatcher.utter_message(text="Đăng ký thất bại. Vui lòng cung cấp đầy đủ thông tin.")
+            return []
+
+        # Tạo ID tự động cho người dùng mới
+        user_id = len(library_users) + 1
+
+        # Lưu thông tin người dùng vào danh sách
+        library_users.append({
+            "id": user_id,
+            "name": name,
+            "username": username,
+            "password": password
+        })
+
+        dispatcher.utter_message(
+            text=f"Đăng ký thành công! Chúc mừng {name}, bạn đã đăng ký với tên người dùng: {username}.")
         return []

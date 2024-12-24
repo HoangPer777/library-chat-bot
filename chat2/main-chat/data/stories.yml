@@ -10,6 +10,7 @@ stories:
     steps:
       - intent: tạm_biệt
       - action: utter_tạm_biệt
+
   - story: respond to library hours
     steps:
       - intent: ask_library_hours
@@ -69,3 +70,36 @@ stories:
     steps:
       - intent: ask_lost_book
       - action: utter_ask_lost_book
+
+
+  - story: user registration
+    steps:
+      - intent: register
+      - action: utter_ask_name
+      - intent: inform_name
+        entities:
+          - name: "John"
+      - action: utter_ask_username
+      - intent: inform_username
+        entities:
+          - username: "john123"
+      - action: utter_ask_password
+      - intent: inform_password
+        entities:
+          - password: "mypassword"
+      - action: action_handle_user
+      - action: utter_success_register
+
+  - story: user login
+    steps:
+      - intent: login
+      - action: utter_ask_username
+      - intent: inform_username
+        entities:
+          - username: "hung123"
+      - action: utter_ask_password
+      - intent: inform_password
+        entities:
+          - password: "132"
+      - action: action_handle_user
+

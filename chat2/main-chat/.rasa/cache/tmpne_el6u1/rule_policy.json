@@ -1,0 +1,32 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ch\\u00e0o\"}}]": "utter_chào",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ch\\u00e0o\"}}, {\"prev_action\": {\"action_name\": \"utter_ch\\u00e0o\"}, \"user\": {\"intent\": \"ch\\u00e0o\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_how_to_extend_books\"}}]": "utter_ask_how_to_extend_books",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_how_to_extend_books\"}}, {\"prev_action\": {\"action_name\": \"utter_ask_how_to_extend_books\"}, \"user\": {\"intent\": \"ask_how_to_extend_books\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_library_hours\"}}]": "utter_ask_library_hours",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_library_hours\"}}, {\"prev_action\": {\"action_name\": \"utter_ask_library_hours\"}, \"user\": {\"intent\": \"ask_library_hours\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_how_to_borrow_books\"}}]": "utter_ask_how_to_borrow_books",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_how_to_borrow_books\"}}, {\"prev_action\": {\"action_name\": \"utter_ask_how_to_borrow_books\"}, \"user\": {\"intent\": \"ask_how_to_borrow_books\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_late_return_policy\"}}]": "utter_ask_late_return_policy",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_late_return_policy\"}}, {\"prev_action\": {\"action_name\": \"utter_ask_late_return_policy\"}, \"user\": {\"intent\": \"ask_late_return_policy\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_lost_book\"}}]": "utter_ask_lost_book",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_lost_book\"}}, {\"prev_action\": {\"action_name\": \"utter_ask_lost_book\"}, \"user\": {\"intent\": \"ask_lost_book\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_register_card\"}}]": "utter_ask_register_card",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"ask_register_card\"}}, {\"prev_action\": {\"action_name\": \"utter_ask_register_card\"}, \"user\": {\"intent\": \"ask_register_card\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"t\\u1ea1m_bi\\u1ec7t\"}}]": "utter_tạm_biệt",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"t\\u1ea1m_bi\\u1ec7t\"}}, {\"prev_action\": {\"action_name\": \"utter_t\\u1ea1m_bi\\u1ec7t\"}, \"user\": {\"intent\": \"t\\u1ea1m_bi\\u1ec7t\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"introduce_chatbot\"}}]": "utter_introduce_chatbot",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"introduce_chatbot\"}}, {\"prev_action\": {\"action_name\": \"utter_introduce_chatbot\"}, \"user\": {\"intent\": \"introduce_chatbot\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "predicting default action with intent back",
+      "predicting default action with intent session_start",
+      "predicting default action with intent restart"
+    ]
+  }
+}
