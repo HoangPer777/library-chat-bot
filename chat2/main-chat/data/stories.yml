@@ -103,3 +103,9 @@ stories:
           - password: "132"
       - action: action_handle_user
 
+
+  - story: ask books borrowed when not logged in
+    steps:
+      - intent: ask_books_borrowed
+      - action: action_check_books_borrowed
+
