@@ -4,6 +4,11 @@ from datetime import datetime, timedelta
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import numpy as np
+import random
 
 library_users = [
     {"id": 1, "name": "Hung Le", "username": "hung123", "password": "haha123"},
@@ -132,6 +137,9 @@ class ActionHandleUser(Action):
         return []
 
 
+
+
+
 class ActionCheckBooksBorrowed(Action):
     def name(self) -> str:
         return "action_check_books_borrowed"
@@ -182,4 +190,133 @@ class ActionCheckBooksBorrowed(Action):
             message = "Bạn chưa mượn sách nào."
 
         dispatcher.utter_message(text=message)
+        return []
+
+class NCF(nn.Module):
+    def __init__(self, num_users, num_books, embedding_dim, hidden_dim):
+        super(NCF, self).__init__()
+        self.user_embedding = nn.Embedding(num_users, embedding_dim)
+        self.book_embedding = nn.Embedding(num_books, embedding_dim)
+        self.fc1 = nn.Linear(embedding_dim * 2, hidden_dim)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_dim, 1)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, user_ids, book_ids):
+        user_embeds = self.user_embedding(user_ids)
+        book_embeds = self.book_embedding(book_ids)
+        combined = torch.cat([user_embeds, book_embeds], dim=1)
+        output = self.fc1(combined)
+        output = self.relu(output)
+        output = self.fc2(output)
+        output = self.sigmoid(output)
+        return output
+
+class ActionRecommendBooks(Action):
+
+    def name(self) -> Text:
+        return "action_recommend_books"
+
+    def train_model(self, train_data, num_users, num_books, embedding_dim, hidden_dim, learning_rate, num_epochs, batch_size):
+        model = NCF(num_users, num_books, embedding_dim, hidden_dim)
+        criterion = nn.BCELoss()
+        optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+        for epoch in range(num_epochs):
+            indices = torch.randperm(len(train_data))
+            train_data = train_data[indices]
+            total_loss = 0
+            for i in range(0, len(train_data), batch_size):
+                batch = train_data[i:i + batch_size]
+                user_ids = batch[:, 0]
+                book_ids = batch[:, 1]
+                labels = batch[:, 2].float()
+                predictions = model(user_ids, book_ids).squeeze()
+                loss = criterion(predictions, labels)
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                total_loss += loss.item()
+
+        return model
+
+    def recommend_books(self, model, user_id, user_to_id, book_to_id, top_n):
+        if user_id not in user_to_id:
+            return []
+
+        user_idx = user_to_id[user_id]
+        user_tensor = torch.tensor([user_idx] * len(book_to_id))
+        book_ids = torch.tensor(list(range(len(book_to_id))))
+
+        with torch.no_grad():
+            predictions = model(user_tensor, book_ids)
+
+        _, top_book_indices = torch.topk(predictions.squeeze(), top_n)
+        top_book_ids = top_book_indices.tolist()
+        recommended_books = [book for book, idx in book_to_id.items() if idx in top_book_ids]
+
+        return recommended_books
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        username = tracker.get_slot('username')
+        user = next((user for user in library_users if user['username'] == username), None)
+
+        if not user:
+            dispatcher.utter_message(text="Bạn chưa đăng nhập hoặc username không đúng.")
+            return []
+
+        user_id = user['id']
+
+        # 1. Tạo ánh xạ ID người dùng và tên sách
+        user_to_id = {user['id']: i for i, user in enumerate(library_users)}
+        book_to_id = {book['name']: i for i, book in enumerate(library_books)}
+
+        # 2. Tạo dữ liệu huấn luyện (binary)
+        train_data = []
+        for borrow in library_borrowed:
+            if borrow['id_user'] in user_to_id:
+                user_idx = user_to_id[borrow['id_user']]
+                book_idx = book_to_id[borrow['namebook']]
+                train_data.append((user_idx, book_idx, 1))
+
+        # Thêm negative samples
+        num_negative_samples = len(train_data)
+        all_user_ids = list(user_to_id.values())
+        all_book_ids = list(book_to_id.values())
+
+        for _ in range(num_negative_samples):
+            user_idx = random.choice(all_user_ids)
+            book_idx = random.choice(all_book_ids)
+            if (user_idx, book_idx, 1) not in train_data:
+                train_data.append((user_idx, book_idx, 0))
+
+        train_data = torch.tensor(train_data)
+
+        num_users = len(user_to_id)
+        num_books = len(book_to_id)
+        embedding_dim = 32
+        hidden_dim = 64
+        learning_rate = 0.001
+        num_epochs = 10
+        batch_size = 32
+
+        try:
+            # Train the model
+            model = self.train_model(train_data, num_users, num_books, embedding_dim, hidden_dim, learning_rate, num_epochs, batch_size)
+
+            # Get recommendations
+            recommended_books = self.recommend_books(model, user_id, user_to_id, book_to_id, 3)
+
+            # Chuẩn bị tin nhắn để gửi cho người dùng
+            if recommended_books:
+                books_message = "\n".join([f"- {book}" for book in recommended_books])
+                dispatcher.utter_message(text=f"Đây là một số cuốn có thể bạn thích:\n{books_message}")
+            else:
+                dispatcher.utter_message(text="Xin lỗi , tôi không thấy cuốn nào hợp với bạn.")
+        except Exception as e:
+            logging.error(f"Error occurred while recommending books: {e}")
+            dispatcher.utter_message(text="An error occurred while recommending books. Please try again later.")
+
         return []

@@ -206,3 +206,13 @@ nlu:
       - Tổng hợp lịch sử mượn sách
       - Lịch sử mượn sách
       - Chi tiết lịch sử mượn sách
+
+  - intent: recommend_books
+    examples: |
+      - Bạn có thể đề xuất vài cuốn sách không 
+      - Đề xuất cho tôi vài cuốn sách 
+      - Gợi ý vài cuốn sách tôi nên đọc
+      - Tôi nên đọc cuốn sách nào 
+      - Cuốn sách nào hợp với tôi 
+      - Gợi ý sách hay cho tôi đi 
+      - Có cuốn nào hợp với tôi không

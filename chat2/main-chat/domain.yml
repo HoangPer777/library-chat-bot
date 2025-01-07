@@ -21,6 +21,7 @@ intents:
   - inform_password
   - login
   - ask_books_borrowed
+  - recommend_books
 responses:
   utter_chào:
     - text: "Chào bạn, mình có thể giúp gì được không?"
@@ -107,6 +108,7 @@ actions:
   - action_search_book
   - action_handle_user
   - action_check_books_borrowed
+  - action_recommend_books
 
 entities:
   - book_name
