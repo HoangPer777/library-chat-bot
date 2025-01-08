@@ -195,4 +195,24 @@ nlu:
       - Password: [vietpass98](password)
       - Password: [sunshine77](password)
       - Password: [moonlight55](password)
- 
+
+  - intent: ask_books_borrowed
+    examples: |
+      - Tôi đã mượn bao nhiêu sách rồi?
+      - Số sách tôi đã mượn là bao nhiêu?
+      - Cho tôi biết số sách tôi đã mượn
+      - Trạng thái mượn sách của tôi
+      - Mượn bao nhiêu sách rồi 
+      - Tổng hợp lịch sử mượn sách
+      - Lịch sử mượn sách
+      - Chi tiết lịch sử mượn sách
+
+  - intent: recommend_books
+    examples: |
+      - Bạn có thể đề xuất vài cuốn sách không 
+      - Đề xuất cho tôi vài cuốn sách 
+      - Gợi ý vài cuốn sách tôi nên đọc
+      - Tôi nên đọc cuốn sách nào 
+      - Cuốn sách nào hợp với tôi 
+      - Gợi ý sách hay cho tôi đi 
+      - Có cuốn nào hợp với tôi không
